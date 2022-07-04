@@ -1,0 +1,181 @@
+
+/*---------------Dark Mode---------------*/
+
+#header > h1 {
+    color: #d4d4d4;
+}
+
+h2 {
+    color: #d4d4d4 !important;
+}
+
+button {
+    background: #323538;
+    color: #d4d4d4;
+}
+
+#spinner div:nth-child(1) {
+    border: 4px solid #d4d4d4;
+}
+
+#spinner div:nth-child(2) {
+    border: 4px solid #4caf50;
+    animation-delay: -0.5s;
+}
+
+#menu {
+    background: #323538;
+}
+
+#menu li, #usernameMenu {
+    color: #d4d4d4; 
+}
+
+#menu:after {
+    border-bottom: 20px solid #323538;
+  }
+
+#searchMovie::placeholder {
+    color: #d4d4d4;
+}
+
+#results {
+    background-color: #595C60;
+}
+
+.movieTitle, .popularPersonName, #chosenMovieTitle, .description {
+    color: #d4d4d4;
+}
+
+.movieDate {
+    background-image: linear-gradient(-180deg,rgba(255, 255, 255, .6), rgba(255,255,255, .6)) !important;
+}
+
+.directorWrapper, .castWrapper {
+    background-color: unset !important;
+}
+
+.similarMoviesWrapper, .creditsWrapper, .cast, .similarMovies, .credit, .descriptionWrapper, #personDetailWrapper, .objectDetails, .objectReview {
+    background-color: #323538;
+}
+
+.descriptionWrapper, #personDetailWrapper, .objectDetails, .objectReview {
+    color: #d4d4d4;
+}
+
+
+.castName:nth-child(odd), .actorMovie:nth-child(odd), .similarMovie:nth-child(odd), .creditName:nth-child(odd) {
+    background-color: gray;
+}
+
+.directorName {
+    background-color: #595C60;;
+}
+
+.personInfo p, .reviewContent, .personInfo p:first-line, .reviewContent:first-line {
+    color: #d4d4d4
+}
+
+.personInfo p, .reviewContent {
+    color: black;
+}
+
+.darkModeColor {
+    color: #d4d4d4 !important;
+}
+
+.cast::-webkit-scrollbar-track {
+    width: 50%;
+    background-color: #d4d4d4;
+    border-radius: 5px;
+}
+
+.cast::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 12px;
+    background-color: #F5F5F5;
+    border-radius: 5px;
+    height: 1rem;
+}
+
+.cast::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 2px;
+}
+
+.credit::-webkit-scrollbar-track {
+    width: 50%;
+    background-color: #d4d4d4;
+    border-radius: 5px;
+}
+
+.credit::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 12px;
+    background-color: #F5F5F5;
+    border-radius: 5px;
+    height: 1rem;
+}
+
+.credit::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 2px;
+}
+
+.similarMovies::-webkit-scrollbar-track {
+    width: 50%;
+    background-color: #d4d4d4;
+    border-radius: 5px;
+}
+
+.similarMovies::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 12px;
+    background-color: #F5F5F5;
+    border-radius: 5px;
+    height: 1rem;
+}
+
+.similarMovies::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 2px;
+}
+
+.popupCont {
+    background-color: #323538;
+}
+
+.popupCont p {
+    color: #d4d4d4;
+}
+
+.popupBtn {
+    background-color: #323538;
+    color: #d4d4d4;
+}
+
+.detailIcon {
+    color: #d4d4d4;
+}
+
+.voteWrapper, .searchStarImg {
+    background-color: #323538;
+    border: 1px solid white;
+}
+
+.voteTextContent, .searchVoteTextContent {
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.8));
+}
+
+.vote, .voteSearch {
+    color: white;
+    text-shadow: 0 1px 10px black;
+}
+
+#descriptionArrow, .reviewArrow {
+    background-color: #323538;
+}
+
+.tagline {
+    color: #d4d4d4;
+}

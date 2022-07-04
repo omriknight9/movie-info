@@ -1,0 +1,62 @@
+<div id="logo"> 
+    <h1>STARK INDUSTRIES</h1>
+</div> 
+<section id="signUpSection" class="section">
+    <form action="javascript:void(0);" id="signUpForm" class="form">
+        <div class="fade-box">
+            <p id="passErrorSignIn"></p>
+            <input type="text" name="username" id="usernameSignUp" class="signUpInput" autocomplete="no" placeholder="" onclick="backColor($(this), '1px solid #d3d3d3')">
+            <input type="email" placeholder="" id="emailSignUp" class="signUpInput" autocomplete="no" onclick="backColor($(this), '1px solid #d3d3d3')">
+            <input type="password" placeholder="" id="passwordSignUp" class="signUpInput" autocomplete="no" onclick="backColor($(this), '1px solid #d3d3d3')">
+
+            <button onclick="signUp()" class="signUpButton">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button> 
+            <p class="logInDesc"></p>
+            <p id="showSignInFormBtn" onclick="showSignInForm()"></p> 
+            <p id="emailMessage"></p> 
+        </div>
+    </form>
+</section>
+
+<section id="signInSection" class="section">
+    <form action="javascript:void(0);" id="signInForm" class="form">
+        <div class="fade-box">
+            <p id="passErrorLogIn"></p>
+            <input type="text" name="username" id="usernameSignIn" class="signUpInput" placeholder="" autocomplete="no" onclick="backColor($(this), '1px solid #d3d3d3')"">
+            <input type="password" placeholder="" id="passwordSignIn" class="signUpInput" autocomplete="no" onclick="backColor($(this), '1px solid #d3d3d3')">
+
+            <button onclick="logIn()" class="signUpButton">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button> 
+            <p class="logInDesc"></p>
+            <p id="showSignUpFormBtn" onclick="showSignUpForm()"></p> 
+            <div id="forgotPassWrapper">
+                <p id="forgotPass" onclick="showResetPassForm()"></p>
+                <p id="forgotPassBtn" onclick="showResetPassForm()"></p>
+            </div>
+        </div>
+    </form>
+</section>
+
+<section id="forgotPassSection" class="section">
+    <form action="javascript:void(0);" id="forgotPassForm" class="form">
+        <div class="fade-box">
+            <input type="email" placeholder="" id="emailForgotPass" class="signUpInput" onclick="backColor($(this), '1px solid #d3d3d3')" autocomplete="no">
+            <button onclick="resetPassword()" class="signUpButton">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button> 
+            <p id="backToSignInFormBtn" onclick="showSignInForm()"></p> 
+            <p id="emailWasSent"></p>
+        </div>
+    </form>
+</section> 

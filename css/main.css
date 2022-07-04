@@ -1,0 +1,2519 @@
+﻿
+html, body {
+    position: relative;
+    font-family: 'Kurale', sans-serif;
+    font-weight: 500;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin: 0;
+    background-color: white;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: black;
+}
+
+.progress-container {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 8px;
+}
+
+.progress-bar {
+  height: 8px;
+  background: black;
+  width: 0;
+  opacity: .7;
+}
+
+h1 {
+    font-family: 'Kurale', sans-serif !important;
+}
+
+h2 {
+	color: #89867e;
+	text-align: center;
+	font-weight: 300;
+}
+
+.btnWrapper {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    width: 100%;
+    text-align: center;
+    transition: .3s;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    -moz-transition: .3s;
+}
+
+button {
+    margin: 1rem;
+    border: none;
+    width: 7rem;
+    height: 3rem;
+    background: white;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.8));
+    transition: .3s;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    -moz-transition: .3s;
+}
+
+button:active {
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.8));
+    transform: translateY(4px);
+    -ms-transform: translateY(4px);
+    -moz-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    -o-transform: translateY(4px);
+}
+
+#genreSortBtn {
+    display: block;
+    margin-top: 1rem;
+    font-size: 2rem;
+}
+
+/*---------------Spinner---------------*/
+
+#spinnerWrapper {
+    position: fixed;
+    width: 100%;
+    top: 30%;
+    z-index: 999;
+}
+
+#spinner {
+    display: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    position: relative;
+    margin: auto;
+}
+
+#spinner div {
+    position: absolute;
+    opacity: 1;
+    border-radius: 50%;
+    animation: spinner 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+#spinner div:nth-child(1) {
+    border: 4px solid black;
+}
+
+#spinner div:nth-child(2) {
+    border: 4px solid #4caf50;
+    animation-delay: -0.5s;
+}
+
+@keyframes spinner {
+    0% {
+        top: 28px;
+        left: 28px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    
+    100% {
+        top: -1px;
+        left: -1px;
+        width: 58px;
+        height: 58px;
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes spinner {
+    0% {
+        top: 28px;
+        left: 28px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    
+    100% {
+        top: -1px;
+        left: -1px;
+        width: 58px;
+        height: 58px;
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes spinner {
+    0% {
+        top: 28px;
+        left: 28px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    
+    100% {
+        top: -1px;
+        left: -1px;
+        width: 58px;
+        height: 58px;
+        opacity: 0;
+    }
+}
+
+/*---------------Header---------------*/
+
+#headerWrapper {
+    position: relative;
+    width: 100%;
+    height: 6rem;
+    background-color: black;
+    box-shadow: 0 1px 5px #4caf50;
+}
+
+#logoWrapper {
+    position: absolute;
+    top: 4.5rem;
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    justify-content: center;
+}
+
+.logo {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 100px;
+    box-shadow: 0 1px 5px #4caf50;
+    background: black url("../images/movie.png") no-repeat center center;
+    background-size: contain;
+    z-index: 5;
+}
+
+#header {
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+
+#usFlag {
+    width: 70px;
+    height: 51px;
+    position: absolute;
+    top: 1.5rem;
+    right: 5rem;
+    pointer-events: none;
+    opacity: .5;
+}
+
+#isFlag {
+    width: 60px;
+    height: 46px;
+    position: absolute;
+    top: 1.5rem;
+    right: 9rem;
+}
+
+#user {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 60px;
+    height: 60px;
+}
+
+#menuOpenWrapper {
+    position: absolute;
+    cursor: pointer;
+    display: none;
+    width: 2rem;
+    height: 2rem;
+    top: 1.8rem;
+    right: 2rem;
+    transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+    -webkit-transition: .3s;
+    z-index: 9999;
+}
+
+#toggle {
+    width: 45px;
+    position: relative;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+}
+
+#toggle span {
+    display: block;
+    position: absolute;
+    height: 6px;
+    width: 50%;
+    background: #4caf50;
+    opacity: 1;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .25s ease-in-out;
+    -moz-transition: .25s ease-in-out;
+    -o-transition: .25s ease-in-out;
+    transition: .25s ease-in-out;
+}
+
+#toggle span:nth-child(even) {
+    left: 40%;
+    border-radius: 0 9px 9px 0;
+}
+
+#toggle span:nth-child(odd) {
+    left: 0px;
+    border-radius: 9px 0 0 9px;
+}
+
+#toggle span:nth-child(1), #toggle span:nth-child(2) {
+    top: 0px;
+}
+
+#toggle span:nth-child(3), #toggle span:nth-child(4) {
+    top: 16px;
+}
+
+#toggle span:nth-child(5), #toggle span:nth-child(6) {
+    top: 32px;
+}
+
+#toggle.on span:nth-child(1),#toggle.on span:nth-child(6) {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#toggle.on span:nth-child(2),#toggle.on span:nth-child(5) {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+#toggle.on span:nth-child(1) {
+    left: 5px;
+    top: 7px;
+}
+
+#toggle.on span:nth-child(2) {
+    left: calc(50% - 5px);
+    top: 7px;
+}
+
+#toggle.on span:nth-child(3) {
+    left: -50%;
+    opacity: 0;
+}
+
+#toggle.on span:nth-child(4) {
+    left: 100%;
+    opacity: 0;
+}
+
+#toggle.on span:nth-child(5) {
+    left: 5px;
+    top: 27px;
+}
+
+#toggle.on span:nth-child(6) {
+    left: calc(50% - 5px);
+    top: 27px;
+}
+
+#toggle.on + #menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+#menu {
+    position: absolute;
+    right: -.84rem;
+    top: 3.5rem;
+    color: #999;
+    width: 200px;
+    padding: 10px;
+    margin: auto;
+    text-align: center;
+    border-radius: 4px;
+    background: white;
+    opacity: 0;
+    visibility: hidden;
+    transition: .4s;
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
+    -o-transition: .4s;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.8));
+    cursor: auto;
+}
+
+#menu:after {
+  position: absolute;
+  top: -15px;
+  right: 7px;
+  content: "";
+  display: block;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 20px solid white;
+}
+
+#menu ul {
+    padding: 0;
+}
+
+#menu li {
+    list-style-type: none;
+    color: black;
+    filter: drop-shadow(0 0 6px rgba(10, 10, 10, 0.3));
+    line-height: 2.5rem;
+    border-bottom: 1px solid #4caf50;
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+
+#usernameMenu {
+    color: black;
+    font-size: 1.3rem;
+}
+
+#usernameSpan {
+    color: #4caf50;
+}
+
+#menu img {
+    width: 50px;
+    height: 50px;
+}
+
+#ironmanWrapper {
+    width: 100%;
+    float: right;
+    position: relative;
+}
+
+#ironman {
+    position: absolute;
+    right: 0;
+    width: 20rem;
+    animation: rightToLeft 3s;
+    -webkit-animation: rightToLeft 3s;
+    -moz-animation: rightToLeft 3s;
+    -o-animation: rightToLeft 3s;
+    z-index: 999;
+}
+
+#spidermanWrapper {
+    width: 100%;
+    position: relative;
+}
+
+#spiderman {
+    width: 15rem;
+    position: absolute;
+    left: 0;
+    animation: topToBottom 3s;
+    -webkit-animation: topToBottom 3s;
+    -moz-animation: topToBottom 3s;
+    -o-animation: topToBottom 3s;
+    z-index: 999;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.5));
+}
+
+@keyframes rightToLeft {
+    0% {
+        margin-right: -15rem;
+    }
+
+    100% {
+        margin-right: 0;
+    }
+}
+
+@-webkit-keyframes rightToLeft {
+    0% {
+        margin-right: -15rem;
+    }
+
+    100% {
+        margin-right: 0;
+    }
+}
+
+@-moz-keyframes rightToLeft {
+    0% {
+        margin-right: -15rem;
+    }
+
+    100% {
+        margin-right: 0;
+    }
+}
+
+@keyframes topToBottom {
+    0% {
+        margin-top: -15rem;
+    }
+
+    100% {
+        margin-top: 0;
+    }
+}
+
+@-webkit-keyframes topToBottom {
+    0% {
+        margin-top: -15rem;
+    }
+
+    100% {
+        margin-top: 0;
+    }
+}
+
+@-moz-keyframes topToBottom {
+    0% {
+        margin-top: -15rem;
+    }
+
+    100% {
+        margin-top: 0;
+    }
+}
+
+#imgWrapper {
+    position: absolute;
+    top: -2.5rem;
+    left: -4rem;
+    transform: scale(.3);
+    -webkit-transform: scale(.3);
+    -moz-transform: scale(.3);
+    -ms-transform: scale(.3);
+    -o-transform: scale(.3);
+}
+
+#tmdbImg {
+    width: 250px;
+    height: 170px;
+}
+
+#header > h1 {
+    margin: 0;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    font-size: 3rem;
+}
+
+/*---------------Search---------------*/
+
+#searchBox {
+    width: 100%;
+    position: relative;
+    z-index: 4;
+}
+
+#searchMovie {
+    background: none;
+    display: block;
+    margin-top: 6rem;
+    width: 100%;
+    height: 2rem;
+    text-indent: 2%;
+    border: 0; 
+    border-bottom: 1px solid #ccc;
+    font-size: 1.2rem;
+}
+
+#searchImg {
+    position: absolute;
+    top: 6rem;
+    right: 1rem;
+    width: 30px;
+}
+
+#results {
+    position: absolute;
+    display: none;
+    z-index: 101;
+    top: 11.5rem;
+    background-color: white;
+    width: 40%;
+    height: 20rem;
+    overflow-y: scroll;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.8));
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.resultRow {
+    position: relative;
+    cursor: pointer;
+    height: 8rem;
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1.3px solid #4caf50;
+}
+
+.resultRow .description {
+    width: 50%;
+    text-align: center;
+}
+
+.resultRow .description p {
+    font-weight: 600;
+}
+
+.searchStarImg {
+    position: absolute;
+    right: 1rem;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid #323538;
+    border-radius: 50%;
+    z-index: 1;
+    text-align: center;
+    line-height: 3rem;
+    overflow: hidden;
+}
+
+.searchVoteBackground {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+.searchVoteTextContent {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.searchVote {
+    position: absolute;
+    right: 1.8rem;
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.posterWrapper {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+
+.poster {
+    width: 65px;
+    height: 90px;
+    border-radius: 5px;
+}
+
+.inputWrapper {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    justify-content: center;
+}
+
+.inputColumn {
+    width: 50%; 
+    margin-top: 3rem;
+    position: relative;
+}
+
+#searchMovie:focus {
+    outline: none;
+}
+
+#searchMovie ~ .focus-border {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #4caf50;
+    transition: .4s;
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
+    -o-transition: .4s;
+}
+
+#searchMovie:focus ~ .focus-border {
+    width: 100%;
+    transition: .4s;
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
+    -o-transition: .4s;
+    left: 0;
+}
+
+/*---------------Container---------------*/
+
+#container {
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    justify-content: center;
+    margin: -5rem 3rem 1rem 3rem;
+}
+
+/*---------------Popular People---------------*/
+
+#popularPeopleWrapper {
+    width: 100%;
+    text-align: center;
+    margin-top: 3.5rem;
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    justify-content: center;
+}
+
+.popularPerson {
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    width: 13rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 2rem;
+    transition: .3s;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+    cursor: pointer;
+    filter: drop-shadow(0 1px 4px rgba(10, 10, 10, .8));
+    z-index: 3;
+}
+
+.popularPersonName {
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+.popularPersonImg {
+    width: 100%;
+    height: 80%;
+    border-radius: 5px;
+    clip-path: polygon(30% 0%, 100% 0, 100% 30%, 100% 95%, 89% 100%, 0 100%, 0% 92%, 0 0);
+    -webkit-clip-path: polygon(30% 0%, 100% 0, 100% 30%, 100% 95%, 89% 100%, 0 100%, 0% 92%, 0 0);
+}
+
+/*---------------Chosen Content---------------*/
+
+.singleMovieContainer {
+    margin-top: 3rem !important;
+}
+
+.detailsWrapper {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+#socialLinksWrapper {
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+#socialLinksWrapper a {
+    margin: 0 1.5rem;
+    filter: drop-shadow(0 1px 4px rgba(10, 10, 10, 0.5));
+    transition: .2s;
+    -webkit-transition: .2s;
+    -moz-transition: .2s;
+    -o-transition: .2s;
+}
+
+#socialLinksWrapper .instagramLink {
+    width: unset;
+    height: unset;
+}
+
+#socialLinksWrapper .personInstagramImage {
+    width: 3.3rem;
+    height: 3.3rem;
+}
+
+#socialLinksWrapper .personTwitterImage {
+    width: 3.6rem;
+    height: 3.3rem;
+}
+
+#socialLinksWrapper .personFacebookImage {
+    width: 3.3rem;
+    height: 3.3rem;
+}
+
+.noMargin {
+    margin-left: unset !important;
+    margin-right: unset !important;
+}
+
+.imdbImage {
+    width: 500px;
+    height: 281px;
+    border-radius: 5px;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.8));
+    cursor: url('../images/imdb_small.png'), auto;
+}
+
+.tagline {
+    margin-top: 1rem;
+}
+
+.personImdbImage {
+    width: 170px;
+    border-radius: 5px;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.8));
+    cursor: url('../images/imdb_small.png'), auto;
+}
+
+.movieImg, .tvShowImg {
+    width: 100%;
+    height: 320px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    clip-path: polygon(30% 0%, 100% 0, 100% 30%, 100% 95%, 89% 100%, 0 100%, 0% 92%, 0 0);
+    -ms-clip-path: polygon(30% 0%, 100% 0, 100% 30%, 100% 95%, 89% 100%, 0 100%, 0% 92%, 0 0);
+    -o-clip-path: polygon(30% 0%, 100% 0, 100% 30%, 100% 95%, 89% 100%, 0 100%, 0% 92%, 0 0);
+    -webkit-clip-path: polygon(30% 0%, 100% 0, 100% 30%, 100% 95%, 89% 100%, 0 100%, 0% 92%, 0 0);
+}
+
+.imgDateWrapper {
+    filter: drop-shadow(0 1px 4px rgba(10, 10, 10, 0.5));
+}
+
+.voteWrapper {
+    position: relative;
+    width: 3rem;
+    height: 3rem;
+    background-color: white;
+    border: 1px solid #323538; 
+    border-radius: 50%;
+    position: absolute;
+    bottom: 2rem;
+    right: -1rem;
+    z-index: 1;
+    text-align: center;
+    line-height: 3rem;
+    overflow: hidden;
+}
+
+.voteBackground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.voteTextContent {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.vote {
+    z-index: 1;
+    font-size: .9rem;
+    font-weight: 600;
+    color: #323538;
+
+}
+
+#chosenMovie {
+    display: none;
+    text-align: center;
+    width: 100%;
+}
+
+#chosenMovieTitle {
+    margin-top: 2rem;
+    font-size: 2rem;
+}
+
+.descriptionWrapper, #personDetailWrapper {
+    width: 70%;
+    margin: 2rem auto auto auto;
+    border-radius: 5px;
+    background-color: white;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.8));
+    text-align: left;
+}
+
+#personDetailWrapper i {
+    margin-right: .5rem;
+}
+
+#reviewsWrapper {
+    width: 70%;
+    margin: 2rem auto auto auto;
+    text-align: left;
+}
+
+.personCont {
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.personInfo {
+    position: relative;
+    height: 4.5rem;
+    transition: .8s;
+    -webkit-transition: .8s;
+    -o-transition: .8s;
+    -moz-transition: .8s;
+}
+
+.personInfo p:first-line, .reviewContent:first-line {
+    color: black;
+}
+
+.personInfo p, .reviewContent {
+    margin: 0;
+    color: lightgray;
+    height: 100%;
+    overflow: hidden;
+    transition: .8s;
+    -webkit-transition: .8s;
+    -o-transition: .8s;
+    -moz-transition: .8s;
+}
+
+.blackColor {
+    color: black !important;
+}
+
+.unsetHeight {
+    height: unset !important;
+    overflow: unset !important;
+}
+
+#descriptionArrowWrapper {
+    position: absolute;
+    top: unset;
+    right: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.reviewArrowWrapper {
+    position: absolute;
+    bottom: -2rem;
+    right: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.topArrow, .topArrowReview {
+    transform: scaleY(-1);
+}
+
+.topArrow #descriptionArrow, .topArrowReview .reviewArrow  {
+    filter: drop-shadow(0 -3px 1px rgba(10, 10, 10, 0.5)) !important;
+}
+
+#reviewsHeader {
+    font-size: 2.5rem;
+}
+
+#descriptionArrow, .reviewArrow {
+    background-color: white;
+    width: 2rem;
+    cursor: pointer;
+    filter: drop-shadow(0 3px 1px rgba(10, 10, 10, 0.5));
+    border-radius: 50%;
+    padding: .5rem;
+}
+
+.objectDetails {
+    width: 50%;
+    margin: 2rem auto auto auto;
+    border-radius: 5px;
+    background-color: white;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.8));
+    text-align: left;
+}
+
+.objectGenreWrapper, .objectDetails p  {
+    padding-left: 1.5rem;
+}
+
+.detailIcon {
+    padding-top: .2rem;
+    position: absolute;
+    left: .5rem;
+}
+
+#productionCompaniesWrapper {
+    width: 70%;
+    display: flex;
+    margin: auto;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.productionCompany {
+    width: 100px;
+    margin: 1rem;
+    border-radius: 5px;
+}
+
+.descriptionWrapper, .objectDetails, #personDetailWrapper, .objectReview, .tagline {
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+.reviewAuthor {
+    margin: 0 0 1rem 0;
+}
+
+.reviewContainer {
+    position: relative;
+    display: none;
+    opacity: 0;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.8));
+    margin-bottom: 5rem;
+    transition: .3s;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    -moz-transition: .3s;
+}
+
+#reviewsBtns {
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 2rem;
+}
+
+#reviewsLeft {
+    display: none;
+    width: 3rem;
+    cursor: pointer;
+}
+
+#reviewsRight {
+    width: 3rem;
+    cursor: pointer;
+    float: right;
+}
+
+.chosenSlide {
+    display: block;
+    animation: opacity 1s forwards;
+    -webkit-animation: opacity 1s forwards;
+    -moz-animation: opacity 1s forwards;
+    -o-animation: opacity 1s forwards;
+}
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.objectReview {
+    height: 8.5rem;
+    overflow: hidden;
+    border-radius: 5px;
+    background-color: white;
+    transition: .8s;
+    -webkit-transition: .8s;
+    -o-transition: .8s;
+    -moz-transition: .8s;
+}
+
+.objectGallery {
+    margin-top: 3rem;
+}
+
+#switchContentBtnWrapper {
+    margin-top: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+#switchContentBtn3 {
+    display: none;
+    width: 8rem;
+}
+
+.favoriteWrapper, .movieWrapper {
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    align-items: center;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    justify-content: flex-end;
+    width: 13rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 5rem;
+    text-align: center;
+    transition: .3s;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.addToFavoritesBtn {
+    width: 55px;
+    filter: drop-shadow(0 1px 0px rgba(0, 0, 0, 0.8));
+    z-index: 1;
+}
+
+.similarMovie .addToFavoritesBtn {
+    position: absolute;
+    top: -3rem;
+}
+
+.imgDateWrapper {
+    position: relative;
+}
+
+.movieDate {
+    position: absolute;
+    top: -2.2rem;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    width: 100.01%;
+    font-size: 1.5rem;
+    margin: 0;
+    background-image: linear-gradient(-180deg,rgba(200, 200, 200, .3), rgba(200,200,200,.3));
+}
+
+.movieTitle {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+    line-height: 1.5rem;
+}
+
+.chosenMovieSection {
+    text-align: center;
+}
+
+#castWrapper, #similarWrapper {
+    margin: auto;
+    width: 71%;
+}
+
+#directorWrapper {
+    margin: auto;
+    width: 100%;
+}
+
+.directorWrapper {
+    border-radius: 5px;
+    background-color: white;
+}
+
+.castWrapper, .similarMoviesWrapper, .creditsWrapper {
+    border-radius: 5px;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.8));
+    background-color: white;
+}
+
+.castWrapper, .creditsWrapper {
+    margin-bottom: 2rem;
+}
+
+.similarMoviesHeader, .castHeader, .creditsHeader, .directorHeader {
+    font-size: 2.5rem;
+}
+
+.cast, .similarMovies, .credit {
+    display: flex;
+    flex-wrap: nowrap;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    margin: auto;
+    border-radius: 5px;
+    overflow-x: scroll;
+    padding: 1rem;
+    background-color: white;
+}
+
+.movieFullNameWrapper {
+    display: none;
+    position: absolute;
+    top: -3rem;
+    left: -14%;
+    background: url(../images/titleBox.png);
+    width: 120%;
+    background-size: 100% 6rem;
+    background-repeat: no-repeat;
+    z-index: 999;
+    padding: .7rem;
+    border-radius: 8px;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.5));
+}
+
+.movieFullName {
+    color: white;
+    width: 95%;
+    font-size: .9rem;
+    margin-top: .1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.movieWrapper > .movieImg, .favoriteWrapper > .movieImg {
+    cursor: pointer;
+}
+
+#currentHeader, #popularPeopleHeader {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.castName, .actorMovie, .similarMovie, .creditName, .directorName {
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.8));
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    transition: .3s;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+    margin-top: 3rem;
+    padding-bottom: 1rem;
+    border-radius: 5px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.director {
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    justify-content: center;
+}
+
+.creditName {
+    margin-top: 1rem !important;
+}
+
+.castName, .similarMovie, .creditName, .directorName {
+    position: relative;
+    background-color: white;
+}
+
+.castName:nth-child(even), .actorMovie:nth-child(even), .similarMovie:nth-child(even), .creditName:nth-child(even) {
+    background-color: lightgray;
+}
+
+.actorMovie:nth-child(odd) {
+    background-color: white;
+}
+
+.castName:last-of-type, .similarMovie:last-of-type, .creditName:last-of-type {
+    margin-right: 0;
+}
+
+.actorImg, .similarMovieImg, .similarMovieImg {
+    width: 150px;
+    height: 212px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: pointer;
+}
+
+.linksWrapper {
+    position: absolute;
+    top: -3rem;
+}
+
+.imdbLinkWrapper, .instagramWrapper {
+    cursor: pointer;
+}
+
+.imdbLinkWrapper {
+    margin-right: 1rem;
+}
+
+.instagramWrapper {
+    margin-left: 1rem;
+}
+
+.personInstagramImage {
+    width: 50px;
+}
+
+.imdbLink {
+    width: 30px;
+    height: 30px;
+}
+
+.noImdbLink {
+    cursor: auto;
+}
+
+.instagramLink {
+    width: 30px;
+    height: 30px;
+}
+
+.actorMovieImg {
+    width: 150px;
+    height: 212px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: pointer;
+}
+
+.castName > span, .actorMovie > span, .similarMovie span, .creditName > span {
+    font-size: .9rem;
+    padding: 0 .3rem;
+}
+
+.cast:after, .similarMovies:after, .credit:after {
+  content: '';
+  flex: 0 0 1.8rem;
+}
+
+.cast::-webkit-scrollbar-track {
+    width: 50%;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.cast::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 12px;
+    background-color: #F5F5F5;
+    border-radius: 5px;
+    height: 1rem;
+}
+
+.cast::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 2px;
+}
+
+.credit::-webkit-scrollbar-track {
+    width: 50%;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.credit::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 12px;
+    background-color: #F5F5F5;
+    border-radius: 5px;
+    height: 1rem;
+}
+
+.credit::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 2px;
+}
+
+.similarMovies::-webkit-scrollbar-track {
+    width: 50%;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.similarMovies::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 12px;
+    background-color: #F5F5F5;
+    border-radius: 5px;
+    height: 1rem;
+}
+
+.similarMovies::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 2px;
+}
+
+.movieGalleryImg {
+    margin: 2rem;
+    width: 500px;
+    height: 281px;
+    border-radius: 10px;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.8));
+    transition: .3s;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+    cursor: url('../images/cursor2.png'), auto;
+}
+
+.personGalleryImage {
+    width: 12rem;
+    height: unset;
+}
+
+.movieVideo {
+    margin: 2rem;
+    border-radius: 10px;
+    border: 8px solid black;
+}
+
+/*---------------Bottom Section---------------*/
+
+#addToFavorites {
+    display: none;
+    position: fixed;
+    bottom: -5rem;
+    width: 100%;
+    height: 4rem;
+    line-height: 4rem;
+    margin: 0;
+    text-align: center;
+    background: rgba(0,0,0,.8);
+    animation: favorites 2.5s ease-in-out;
+    -webkit-animation: favorites 2.5s ease-in-out;
+    -moz-animation: favorites 2.5s ease-in-out;
+    -o-animation: favorites 2.5s ease-in-out;
+    color: white;
+    font-size: 1.7rem;
+    z-index: 9999;
+}
+
+@keyframes favorites {
+    0% {
+        bottom: -5rem;
+    }
+
+    50% {
+        bottom: 0;
+    }
+
+    100% {
+        bottom: -5rem;
+    }
+}
+
+@-webkit-keyframes favorites {
+    0% {
+        bottom: -5rem;
+    }
+
+    50% {
+        bottom: 0;
+    }
+
+    100% {
+        bottom: -5rem;
+    }
+}
+
+.bottomSection {
+    width: 100%;
+    margin-bottom: 16rem;
+    position: relative;
+}
+
+#captainmarvelWrapper {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    justify-content: center;
+    z-index: 1;
+}
+
+#captainmarvel {
+    z-index: 100;
+    width: 26rem;
+    height: 32rem;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.5));
+}
+
+#footer {
+    position: relative;
+    width: 100%;
+}
+
+#boardWrapper {
+    position: absolute;
+    bottom: -8.7rem;
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    justify-content: center;
+}
+
+#board {
+    width: 30rem;
+}
+
+.footerImg {
+    width: 80px;
+    height: 80px;
+}
+
+#contactWrapper {
+    display: flex;
+    width: 30rem;
+    bottom: 2rem;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+}
+
+#contact {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#contact > a {
+    text-decoration: none;
+    transition: .2s
+}
+
+#tmdbCertWrapper {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 2rem;
+    height: 4rem;
+    background-color: black;
+}
+
+#tmdbCert {
+    text-align: center;
+    color: white;
+}
+
+#tmdbImgFooter {
+    margin-left: 1rem;
+    width: 70px;
+    height: 45px;
+}
+
+/*---------------Others---------------*/
+
+#darkToggle {
+    position: fixed;
+    bottom: 4rem;
+    left: 2rem;
+    background: white;
+    border-radius: 100%;
+    z-index: 999;
+    filter: drop-shadow(0 1px 4px rgba(100, 100, 100, 0.8));
+}
+
+.modeSwitch {
+    z-index: 999;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 55px;
+    height: 55px;
+}
+
+.modeSwitch svg {
+    width: 0;
+    transition: all .3s ease-in;
+    transform-origin: center;
+}
+
+.modeSwitch .moon {
+    opacity: 0;
+}
+
+.modeSwitch .sun {
+    width: 30px;
+}
+
+.dark {
+    background: #323538 !important;
+    filter: drop-shadow(0 1px 4px rgba(255, 255, 255, 1)) !important;
+}
+
+.dark .moon {
+    opacity: 1;
+    width: 30px;
+}
+
+.dark .sun {
+    opacity: 0;
+    width: 0;
+}
+
+#goToTopBtn {
+    display: none;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    position: fixed;
+    bottom: 4rem;
+    right: 1.5rem;
+    z-index: 999;
+    border-radius: 100%;
+    filter: drop-shadow(0 1px 4px rgba(200, 200, 200, 0.8));
+}
+
+/*---------------Popups---------------*/
+    
+.popUpInfo {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    min-height: 900px;
+    background: rgba(210,220,225,.8);
+    top: 0;
+    text-align: center;
+}
+
+.popupCont {
+    display: block;
+    position: fixed;
+    width: 40rem;
+    height: 20rem;
+    background: #fff;
+    padding:3em;
+    top: 20%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.popupBtnsWrapper {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.popupBtn {
+    background-color:black;
+    padding: .7rem;
+    width: 7rem;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#genreWrapper button {
+    width: unset;
+    height: 2rem;
+    font-size: .8rem;
+    margin: .5rem;
+}
+
+#allBtn {
+    background-color: black;
+    color: white;
+    display: block;
+    margin: .5rem auto .5rem auto !important;
+}
+
+#genreWrapper button:active {
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.8));
+    transform: unset;
+}
+
+#genrePop .popupCont {
+    height: unset;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 2rem;
+}
+
+#genreDesc {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+#genreWrapper {
+    height: 15rem;
+    overflow-y: auto;
+}
+
+.Xbtn {
+     display: block;
+    position: absolute;
+    width:25px;
+    height:25px;
+    background:url(../images/closeBtn.png) no-repeat top center;
+    background-Size:100% auto;
+    top: 1em;
+    right: 1em;
+    cursor:pointer;
+}
+
+#changeUsernamePop {
+    text-align: center;
+}
+
+@media only screen and (max-width: 1240px) {
+
+    /*---------------Header---------------*/
+
+    #ironman {
+        width: 15rem;
+    }
+    
+    #spiderman {
+        width: 10rem;
+    }
+
+    /*---------------Chosen Content---------------*/
+
+    .movieGalleryImg {
+        width: 300px;
+        height: 170px;
+    }
+
+    .personGalleryImage {
+        height: unset;
+        width: 12rem;
+    }
+}
+
+@media only screen and (max-width: 1040px) {
+
+    /*---------------Chosen Content---------------*/
+
+    .movieGalleryImg {
+        width: 400px;
+        height: 250px;
+    }
+
+    .personGalleryImage {
+        height: unset;
+        width: 12rem;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+
+    /*---------------Popups---------------*/
+
+    .popupCont {
+        top: 8%;
+        width: 65%;
+    }
+
+    #genrePop .popupCont {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 920px) {
+
+    /*---------------Header---------------*/
+
+    #ironman {
+        width: 25%;
+    }
+    
+    #spiderman {
+        width: 20%;
+    }
+
+    /*---------------Search---------------*/
+
+    .inputColumn {
+        width: 70%;
+    }
+
+    #results  {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 840px) {
+
+    /*---------------Chosen Content---------------*/
+
+    .movieGalleryImg {
+        margin: 1rem;
+    }
+}
+
+@media only screen and (min-width: 765px) {
+
+    /*---------------Header---------------*/
+    
+    #usFlag, #isFlag, #user, #ironmanWrapper, #spidermanWrapper, #captainmarvel, .addToFavoritesBtn {
+        cursor: pointer;
+    }
+
+    /*---------------Container---------------*/
+
+    #genreSortBtn {
+        cursor: pointer;
+    }
+
+    .rest {
+        filter: grayscale(60%) blur(1px);
+    }
+
+    .chosenHover {
+        transform: perspective(800px) rotateY(20deg) scale(1.05);
+        -webkit-transform: perspective(800px) rotateY(20deg) scale(1.05);
+        -moz-transform: perspective(800px) rotateY(20deg) scale(1.05);
+        -ms-transform: perspective(800px) rotateY(20deg) scale(1.05);
+        -o-transform: perspective(800px) rotateY(20deg) scale(1.05);
+        filter: grayscale(0) blur(0);
+    }
+
+    #popularPeopleWrapper .rest {
+        filter: grayscale(60%) blur(1px) drop-shadow(0 1px 4px rgba(10, 10, 10, .8))
+    }
+
+    #popularPeopleWrapper .chosenHover {
+        filter: grayscale(0) blur(0) drop-shadow(0 1px 4px rgba(10, 10, 10, .8))
+    }
+
+    /*---------------Popular People---------------*/
+
+    #popularPeopleWrapper .rest {
+        filter: grayscale(60%) blur(1px) drop-shadow(0 1px 4px rgba(10, 10, 10, .8))
+    }
+
+    #popularPeopleWrapper .chosenHover {
+        filter: grayscale(0) blur(0) drop-shadow(0 1px 4px rgba(10, 10, 10, .8))
+    }
+
+    /*---------------Chosen Content---------------*/
+
+    .movieGalleryImg:hover {
+        transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        -o-transform: scale(1.2);
+    }
+
+    .castName:hover, .directorName:hover {
+        transform: scale(1.05);
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        -o-transform: scale(1.05);
+    }
+
+    .creditName:hover {
+        transform: scale(1.05);
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        -o-transform: scale(1.05);
+    }
+    
+    .actorMovie:hover {
+        transform: scale(1.05);
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        -o-transform: scale(1.05);
+    }
+    
+    .similarMovie:hover {
+        transform: scale(1.05);
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        -o-transform: scale(1.05);
+    }
+
+    /*---------------Bottom Section---------------*/
+
+    #contact > a:hover {
+        transform: rotate(-25deg) scale(1.2);
+        -webkit-transform: rotate(-25deg) scale(1.2);
+        -moz-transform: rotate(-25deg) scale(1.2);
+        -ms-transform: rotate(-25deg) scale(1.2);
+        -o-transform: rotate(-25deg) scale(1.2);
+    }
+
+    #socialLinksWrapper > a:hover {
+        transform: rotate(-25deg) scale(1.2);
+        -webkit-transform: rotate(-25deg) scale(1.2);
+        -moz-transform: rotate(-25deg) scale(1.2);
+        -ms-transform: rotate(-25deg) scale(1.2);
+        -o-transform: rotate(-25deg) scale(1.2);
+    }
+
+    /*---------------Others---------------*/
+
+    #darkToggle {
+        cursor: pointer;
+    }
+}
+
+@media only screen and (max-width: 765px) {
+
+    /*---------------Header---------------*/
+
+    #header > h1 {
+        font-size: 2.5rem;
+    }
+
+    #headerWrapper {
+        height: 5rem;
+    }
+
+    #logoWrapper {
+        top: 4rem;
+    }
+
+    #imgWrapper {
+        top: -2.2rem;
+        left: -3rem;
+    }
+
+    #tmdbImg {
+        width: 200px;
+        height: 150px;
+    }
+
+    #usFlag {
+        top: 1.3rem;
+        right: 4rem;
+        width: 65px;
+        height: 50px;
+    }
+    
+    #isFlag {
+        top: 1.3rem;
+        right: 7.5rem;
+        width: 55px;
+        height: 45px;
+    }
+
+    #user {
+        width: 50px;
+        height: 50px;
+    }
+
+    #userWrapper, #myAccountWrapper {
+        margin-top: 6rem !important;
+        margin-bottom: 26rem !important;
+    }
+
+    #menuOpenWrapper {
+        top: 1.4rem;
+    }
+
+    /*---------------Container---------------*/
+
+    #container {
+        margin-bottom: 3rem;
+    }
+    
+    /*---------------Chosen Content---------------*/
+
+    .castName > span, .actorMovie span, .similarMovie span, .creditName span, .directorName span {
+        font-size: .8rem;
+    }
+
+    .singleMovieContainer {
+        margin-top: 1.5rem;
+    }
+
+    .descriptionWrapper, .objectDescription, .objectDetails, #personDetailWrapper {
+        width: 90%;
+        padding: 1rem;
+    }
+
+    .personInfo p {
+        padding: 0;
+    }
+
+    .imdbImage {
+        width: 400px;
+        height: 200px;
+    }
+
+    #castWrapper, #similarWrapper, #reviewsWrapper, #directorWrapper, #productionCompaniesWrapper {
+        width: 100%;
+    }
+
+    .cast, .credit {
+        padding-bottom: 1rem;
+    }
+
+    .similarMovies {
+        padding-bottom: 1rem;
+    }
+    
+    .actorImg, .actorMovieImg, .similarMovieImg {
+        width: 100px;
+        height: 138px;
+    }
+
+    .movieGalleryImg {
+        width: 100%;
+        margin: 2rem auto 2rem auto;
+    }
+
+    .personGalleryImage {
+        height: unset;
+        width: 12rem;
+        margin: 1rem;
+    }
+
+    .movieVideo {
+        width: 100% !important;
+        margin: 2rem auto 2rem auto;
+        height: 280px;
+    }
+
+    /*---------------Bottom Section---------------*/
+
+    #captainmarvel {
+        width: 350px;
+        height: 463px;
+    }
+
+    #boardWrapper {
+        bottom: -7.3rem;
+    }
+
+    #board {
+        width: 25rem;
+    }
+
+    #contact a:nth-child(2) {
+        margin: 0 1rem;
+    }
+
+    #contactWrapper {
+        bottom: 2rem;
+    }
+
+    #contact {
+        width: 40%;
+    }
+
+    .footerImg {
+        width: 60px;
+        height: 60px;
+    }
+
+    /*---------------Others---------------*/
+
+    #darkToggle, #goToTopBtn {
+        bottom: 2rem;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+
+    /*---------------Bottom Section---------------*/
+
+    #tmdbImgFooter {
+        margin-right: .5rem;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    /*---------------Container---------------*/
+
+    #container {
+        margin: 0;
+        margin-top: -5rem;
+    }
+
+    .btnWrapper {
+        margin-bottom: -1rem;
+    }
+
+    #switchContentBtnWrapper {
+        margin-bottom: 5rem;
+    }
+
+    .movieWrapper p, .favoriteWrapper p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .movieWrapper, .favoriteWrapper {
+        margin-top: 1rem;
+        width: 9rem;
+    }
+
+    .movieImg, .tvShowImg {
+        height: 244px;
+    }
+
+    .movieWrapper .movieDate, .favoriteWrapper .movieDate {
+        font-size: .7rem;
+        top: -1rem;
+    }
+    
+    .vote {
+        font-size: .7rem;
+        font-weight: 600;
+    }
+
+    /*---------------Popular People---------------*/
+
+    .popularPerson {
+        width: 9rem;
+    }
+
+    .popularPersonName {
+        font-size: 1rem;
+    }
+
+    .popularPersonImg {
+        height: 78%;
+    }
+
+    /*---------------Chosen Content---------------*/
+
+    .singleMovieContainer {
+        margin: 1.5rem 2rem 2rem 2rem !important;
+    }
+
+    .descriptionWrapper, .objectDescription, .objectDetails, #personDetailWrapper, .tagline {
+        font-size: 1rem;
+    }
+
+    #personHomepage {
+        word-break: break-all;
+    }
+
+    .imgDateWrapper {
+        margin: 0;
+    }
+
+    .imdbImage {
+        width: 400px;
+        height: 200px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+
+    /*---------------Header---------------*/
+
+    #usFlag {
+        top: 1.5rem;
+        right: 3rem;
+        width: 55px;
+        height: 40px;
+    }
+    
+    #isFlag {
+        top: 1.5rem;
+        right: 6.5rem;
+        width: 45px;
+        height: 35px;
+    }
+
+    #user {
+        top: 1.3rem;
+        right: .5rem;
+        width: 40px;
+        height: 40px;
+    }
+
+    #menuOpenWrapper {
+        right: .8rem;
+        top: 1.6rem;
+    }
+
+    #menu {
+        right: -.2rem;
+    }
+
+    #menu:after {
+        right: 0rem;
+    }
+
+    #toggle span {
+        width: 40%;
+        height: 5px;
+    }
+
+    #toggle span:nth-child(3), #toggle span:nth-child(4) {
+        top: 13px;
+    }
+
+    #toggle span:nth-child(5), #toggle span:nth-child(6) {
+        top: 26px;
+    }
+
+    #ironman {
+        width: 30%;
+    }
+    
+    #spiderman  {
+        width: 25%;
+    }
+
+    /*---------------Search---------------*/
+
+    #searchMovie {
+        font-size: 1rem;
+    }
+
+    /*---------------Chosen Content---------------*/
+    
+    .movieGalleryImg {
+        height: 180px;
+    }
+
+    .personGalleryImage {
+        height: unset;
+        width: 7rem;
+    }
+
+    .movieVideo {
+        height: 180px !important;
+    }
+
+    /*---------------Bottom Section---------------*/
+
+    .bottomSection {
+        margin-bottom: 12rem;
+    }
+
+    #captainmarvel {
+        width: 250px;
+        height: 363px;
+    }
+
+    #boardWrapper {
+        bottom: -5.3rem;
+    }
+
+    #board {
+        width: 18rem;
+    }
+
+    #contactWrapper {
+        bottom: 1rem;
+    }
+
+    #contact {
+        width: 40%;
+    }
+
+    .footerImg {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+
+    /*---------------Header---------------*/
+
+    #usFlag {
+        top: 2.7rem;
+        right: 3.3rem;
+        width: 50px;
+        height: 35px;
+    }
+    
+    #isFlag {
+        top: .4rem;
+        right: 3.6rem;
+        width: 40px;
+        height: 30px;
+    }
+
+    /*---------------Search---------------*/
+
+    .posterWrapper {
+        left: .5rem;
+    }
+
+    #userWrapper, #myAccountWrapper {
+        margin-top: 4rem !important;
+        margin-bottom: 20rem !important;
+    }
+
+    .inputColumn {
+        width: 90%;
+    }
+
+    .imdbImage {
+        width: 350px;
+    }
+}
+
+@media only screen and (max-width: 470px) {
+
+    /*---------------Container---------------*/
+
+    #switchContentBtnWrapper {
+        margin-bottom: 7rem;
+    }
+    
+    #container {
+        margin: 0;
+        margin-top: -7rem;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+
+    /*---------------Header---------------*/
+
+    #header > h1 {
+        font-size: 2rem;
+        padding-top: 1rem;
+    }
+
+    .logo {
+        width: 5rem;
+        height: 5rem;
+    }
+
+    /*---------------Search---------------*/
+
+    #results {
+        width: 90%;
+    }
+
+    /*---------------Chosen Content---------------*/
+
+    .imdbImage {
+        width: 300px;
+        height: 180px;
+    }
+
+    #addToFavorites {
+        font-size: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+
+    /*---------------Account---------------*/
+
+    #userWrapper, #myAccountWrapper {
+        margin-top: 1rem !important;
+        margin-bottom: 15rem !important;
+    }
+
+    /*---------------Search---------------*/
+
+    .resultRow .description {
+        width: 50%;
+    }
+
+    .resultRow .description p {
+        font-size: .8rem;
+    }
+
+    /*---------------Chosen Content---------------*/
+
+    .similarMoviesHeader, .castHeader, .creditsHeader, .directorHeader {
+        font-size: 1.9rem;
+    }
+
+    #chosenMovie > p {
+        font-size: 1.4rem;
+    }
+
+    .imdbLinkWrapper {
+        margin-right: unset;
+    }
+
+    .imdbLink, .instagramLink {
+        width: 25px;
+        height: 25px;
+    }
+
+    .castName, .actorMovie, .similarMovie, .creditName {
+        margin-left: .5rem;
+        margin-right: .5rem;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+
+    /*---------------Header---------------*/
+
+    #header > h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+
+    /*---------------Search---------------*/
+
+    #searchMovie {
+        font-size: .9rem;
+    }
+
+    /*---------------Container---------------*/
+
+    .movieImg {
+        height: 190px;
+    }
+
+    /*---------------Chosen Content---------------*/
+
+    .imdbImage {
+        width: 280px;
+    }
+
+    .movieWrapper, .favoriteWrapper, .popularPerson {
+        width: 7.5rem;
+    }
+
+    /*---------------Popular People---------------*/
+
+    .popularPersonName {
+        font-size: .9rem;
+    }
+
+    .popularPersonImg {
+        height: 75%;
+    }
+    
+    /*---------------Bottom Section---------------*/
+
+    #tmdbCert {
+        font-size: .85rem;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+
+    /*---------------Search---------------*/
+
+    #searchImg {
+        right: 0;
+    }
+
+    /*---------------Chosen Content---------------*/
+
+    .imdbImage {
+        width: 250px;
+        height: 150px;
+    }
+}
+
+@media only screen and (max-width: 335px) {
+
+    /*---------------Search---------------*/
+
+    #searchMovie {
+        font-size: .85rem;
+    }
+}

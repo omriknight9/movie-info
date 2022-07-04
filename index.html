@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>MovieInfo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Search Info About Movies And TV Shows">
+    <meta property="og:site_name" content="MovieInfo">
+    <meta property="og:title" content="MovieInfo" />
+    <meta property="og:description" content="Search Info About Movies And TV Shows" />
+    <meta property="og:image" itemprop="image" content="https://omriknight9.github.io/movie-info/images/popcorn.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://omriknight9.github.io/movie-info/">
+    <link type="image/x-icon" rel="shortcut icon" href="images/popcorn.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Palanquin+Dark:600" >
+    <link type="text/css" rel="stylesheet" href="css/main.css"/>
+    <link type="text/css" rel="stylesheet" href="css/registration.css">
+    <link href="https://fonts.googleapis.com/css?family=Kurale&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/bc7cd52748.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/parse/dist/parse.min.js"></script>
+    <script type="text/javascript" src="js/userManagment.js"></script>
+
+</head>
+
+<body>
+    <div id="spinnerWrapper">
+        <div id="spinner">
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <div id="contentWrapper">
+
+        <div id="headerWrapper">
+            <div id="header">
+                <h1>MovieInfo</h1>
+                <img src="images/user.png" id="user" onclick="goToSignUp()" alt="">
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="myBar"></div>
+            </div>
+    
+            <img src="images/usFlag.png" alt="usa" id="usFlag" onclick="changeLang(2)">
+            <img src="images/isFlag.png" alt="israel" id="isFlag" onclick="changeLang(1)">
+    
+            <div id="logoWrapper">
+                <div class="logo" onclick="goHome()"></div>
+            </div>
+            <div id="imgWrapper">
+                <a href="https://www.themoviedb.org/" target="_blank" rel="noopener"><img id="tmdbImg" src="images/tmdb.png" alt="Tmdb Img" /></a>
+            </div>
+        </div>
+    
+        <div id="menuOpenWrapper" onclick="toggleClass($('#toggle')[0], 'on')">
+            <div href="#menu" id="toggle">
+                <span class="menuSpan"></span>
+                <span class="menuSpan"></span>
+                <span class="menuSpan"></span>
+                <span class="menuSpan"></span>
+                <span class="menuSpan"></span>
+                <span class="menuSpan"></span>
+            </div>
+            <div id="menu">
+                <p id="usernameMenu"></p>
+                <ul>
+                    <li onclick="goToMyAccount()" id="myAccountBtn">My Account</li>
+                    <li onclick="showFavorites(1)" id="favoritesBtn">Favorites</li>
+                    <li onclick="logOut()" id="logoutBtn">Logout</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div id="spidermanWrapper" onclick="characterClick('315635', 'Spiderman: Homecoming')">
+            <img id="spiderman" src="images/spiderman.png" alt="spiderman" />
+        </div>
+    
+        <div id="ironmanWrapper" onclick="characterClick('1726', 'Iron Man')">
+            <img id="ironman" src="images/ironman.png" alt="ironman" />
+        </div>
+
+        <div id="searchBox">
+            <div class="inputWrapper">
+                <div class="inputColumn">
+                    <input id="searchMovie" type="text" placeholder="Search a Movie, Person or TV Show" maxlength="25" onclick="backColor(this)" aria-label="Search" name="asd" autocomplete="nope">     
+                    <span class="focus-border"></span>
+                    <img src="images/search.png" alt="search" id="searchImg" />
+                </div>
+    
+                <div id="results"></div>
+            </div>
+    
+            <div id="switchContentBtnWrapper">
+                <button id="switchContentBtn3" onclick="switchContent(2)">Playing Now</button>
+                <button id="switchContentBtn2" onclick="switchContent(3)">Trending</button>
+                <button id="switchContentBtn" onclick="switchContent(1)">Upcoming</button>
+                <h2 id="currentHeader">Playing Now</h2>
+            </div>
+        </div>
+    
+        <div id="container">
+            <div id="chosenMovie">
+                <div id="detailsWrapper" class="chosenMovieSection"></div>
+                <div id="directorWrapper" class="chosenMovieSection"></div>
+                <div id="castWrapper" class="chosenMovieSection"></div>
+                <div id="similarWrapper" class="chosenMovieSection"></div>
+                <div id="galleryWrapper" class="chosenMovieSection"></div>
+                <div id="videosWrapper" class="chosenMovieSection"></div>
+                <div id="reviewsWrapper" class="chosenMovieSection"></div>
+            </div>
+        </div>
+    
+        <div id="userWrapper"></div>
+        <div id="myAccountWrapper"></div>
+        <div id="popularPeopleWrapper"></div>
+    
+        <div class="bottomSection">
+            <p id="addToFavorites"></p>
+            <div id="captainmarvelWrapper">
+                <img id="captainmarvel" src="images/captainmarvel.png" alt="captain marvel" onclick="characterClick('299537', 'Captain Marvel')"/>
+            </div>
+            <footer id="footer">
+                <div id="boardWrapper">
+                    <img id="board" src="images/board2.png" alt="board" />
+                    <div id="contactWrapper">
+                        <div id="contact">
+                            <a href="https://www.linkedin.com/in/omri-shalev-8b3515119/" target="_blank" rel="noopener">
+                                <img class="footerImg" src="images/linkedin.png" alt="linkedin" />
+                            </a>
+                            <a href="https://github.com/omriknight9" target="_blank" rel="noopener">
+                                <img class="footerImg" src="images/github.png" alt="github" rel="noopener" />
+                            </a>
+                            <a href="https://www.facebook.com/omri.shalev.31" target="_blank" rel="noopener">
+                                <img class="footerImg" src="images/facebook.png" alt="facebook" />
+                            </a>
+        
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    
+        <div id="tmdbCertWrapper">
+            <p id="tmdbCert">This product uses the TMDb API but is not endorsed or certified by TMDb.</p>
+            <a href="https://www.themoviedb.org/" target="_blank" rel="noopener"><img id="tmdbImgFooter" src="images/tmdb.png" alt="Tmdb" /></a>
+        </div>
+        <img src="images/upBtn.png" alt="up arrow" id="goToTopBtn" onclick="goToTop()" />
+
+        <div id="darkToggle">
+            <div class="modeSwitch">
+                <svg class="sun" fill="none" stroke="#fbb046" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-sun" viewBox="0 0 24 24">
+                    <defs/>
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+                <svg class="moon" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-moon" viewBox="0 0 24 24">
+                    <defs/>
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-----------------Popups--------------->
+
+    <!-----------Hebrew Change--------->
+    <div id="hebrewLang" class="popUpInfo">
+        <div class="popupCont">
+            <div class="Xbtn"></div>
+            <h2>מעבר לעברית</h2>
+            <p>חלק מהאתר יוצג באנגלית כפי שמתקבל במקור</p>
+            <div class="popupBtnsWrapper">
+                <button class="popupBtn" id="" onclick="closeCurrentPopup($(this))">סגור </button>
+            </div>
+        </div>
+    </div>
+
+    <!-----------No Genre Movies--------->
+    <div id="genrePop" class="popUpInfo">
+        <div class="popupCont">
+            <div class="Xbtn"></div>
+            <h2>Pick A Genre</h2>
+            <div id="genreWrapper">
+                <button id="allBtn" onclick="pickGenre(999)">All Movies</button>
+                <button id="actionBtn" onclick="pickGenre(28)">Action</button>
+                <button id="adventureBtn" onclick="pickGenre(12)">Adventure</button>
+                <button id="animationBtn" onclick="pickGenre(16)">Animation</button>
+                <button id="comedyBtn" onclick="pickGenre(35)">Comedy</button>
+                <button id="crimeBtn" onclick="pickGenre(80)">Crime</button>
+                <button id="documentaryBtn" onclick="pickGenre(99)">Documentary</button>
+                <button id="dramaBtn" onclick="pickGenre(18)">Drama</button>
+                <button id="familyBtn" onclick="pickGenre(10751)">Family</button>
+                <button id="fantasyBtn" onclick="pickGenre(14)">Fantasy</button>
+                <button id="historyBtn" onclick="pickGenre(36)">History</button>
+                <button id="horrorBtn" onclick="pickGenre(27)">Horror</button>
+                <button id="musicBtn" onclick="pickGenre(10402)">Music</button>
+                <button id="mysteryBtn" onclick="pickGenre(9648)">Mystery</button>
+                <button id="romanceBtn" onclick="pickGenre(10749)">Romance</button>
+                <button id="scienceFictionBtn" onclick="pickGenre(878)">Science Fiction</button>
+                <button id="tVMovieFictionBtn" onclick="pickGenre(10770)">TV Movie</button>
+                <button id="thrillerBtn" onclick="pickGenre(53)">Thriller</button>
+                <button id="warBtn" onclick="pickGenre(10752)">War</button>
+                <button id="westernBtn" onclick="pickGenre(37)">Western</button>
+            </div>
+
+            <div class="popupBtnsWrapper">
+                <button class="popupBtn" id="" onclick="closeCurrentPopup($(this))">Close </button>
+            </div>
+        </div>
+    </div>
+
+    <!-----------No Genre Movies--------->
+    <div id="noGenrePop" class="popUpInfo">
+        <div class="popupCont">
+            <div class="Xbtn"></div>
+            <h2>No Results</h2>
+            <p id="genreDesc"> No <span id="pickedGenre"></span> Movies</p>
+            <div class="popupBtnsWrapper">
+                <button class="popupBtn" id="" onclick="closeCurrentPopup($(this))">Close </button>
+            </div>
+        </div>
+    </div>
+
+    <!-----------No Imdb--------->
+    <div id="noImdbPop" class="popUpInfo">
+        <div class="popupCont">
+            <div class="Xbtn"></div>
+            <h2>No Imdb Profile</h2>
+            <div class="popupBtnsWrapper">
+                <button class="popupBtn" id="" onclick="closeCurrentPopup($(this))">Close </button>
+            </div>
+        </div>
+    </div>
+
+    <!-----------No Instagram--------->
+    <div id="noInstagramPop" class="popUpInfo">
+        <div class="popupCont">
+            <div class="Xbtn"></div>
+            <h2>No Instagram Profile</h2>
+            <div class="popupBtnsWrapper">
+                <button class="popupBtn" id="" onclick="closeCurrentPopup($(this))">Close </button>
+            </div>
+        </div>
+    </div>
+
+        <!-----------No Favorites--------->
+        <div id="noFavoritesPop" class="popUpInfo">
+            <div class="popupCont">
+                <div class="Xbtn"></div>
+                <h2>No Favorites</h2>
+                <p>Add Some Favorites Movies / TV Shows To Your List</p>
+                <div class="popupBtnsWrapper">
+                    <button class="popupBtn" id="" onclick="closeCurrentPopup($(this))">Close </button>
+                </div>
+            </div>
+        </div>
+
+    <!-----------Change Username--------->
+    <div id="changeUsernamePop" class="popUpInfo">
+        <div class="popupCont">
+            <div class="Xbtn"></div>
+            <h2>Username Change</h2>
+            <p id="changeNameDesc">Change Username From <span id="prevName"></span> To <span id="nextName"></span>?</p>
+            <div class="popupBtnsWrapper">
+                <button class="popupBtn" id="closeUserPopBtn" onclick="closeCurrentPopup($(this))">Close </button>
+                <button class="popupBtn" id="changeUserPopBtn" onclick="changeUsername()">Change Name</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

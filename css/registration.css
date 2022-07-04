@@ -1,0 +1,435 @@
+
+#userWrapper, #myAccountWrapper {
+    display: none;
+    text-align: center;
+    margin-top: 11rem;
+    margin-bottom: 9rem;
+}
+
+:root {
+    --stark-light-blue: #00fffc;
+    --stark-med-blue: #00a4a2;
+}
+
+/* =========================================
+Stark Industries Logo
+========================================= */
+
+#logo {
+    animation: logo-entry .5s ease-in; 
+    width: 500px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 40;
+}
+
+#logo h1 {
+    width: 100%;
+    animation: text-glow 1s ease-out infinite alternate;
+    font-family: 'Ubuntu', sans-serif !important;
+    color: var(--stark-med-blue);
+    font-size: 48px;
+    font-size: 4.8rem;
+    font-weight: bold;
+    position: absolute;  
+    text-shadow:0 0 10px #000, 0 0 20px #000, 0 0 30px #000, 0 0 40px #000, 0 0 50px #000, 0 0 60px #000, 0 0 70px #000;
+    top: -44px;    
+}
+
+#logo h1:before {
+    animation: before-glow 1s ease-out infinite alternate;
+    border-left: 535px solid transparent;
+    border-bottom: 10px solid var(--stark-med-blue);
+    content: ' ';
+    height: 0;
+    position: absolute;
+    right: -74px;
+    top: -10px;
+    width: 0;
+}
+
+#logo h1:after {
+    animation: after-glow .4s ease-out infinite alternate;
+    border-left: 100px solid transparent;
+    border-top: 16px solid var(--stark-med-blue);
+    content: ' ';
+    height: 0;
+    position: absolute;
+    right: -85px;  
+    top: 24px;  
+    transform:rotate(-47deg);
+    width: 0;
+}
+
+/* =========================================
+Log in form
+========================================= */
+
+.section {
+    text-align: center; 
+}
+
+#signInSection, #forgotPassSection {
+     display: none;
+}
+
+.fade-box {
+    animation: input-entry .5s ease-in;
+    width: 100%;
+    z-index: 4;
+}
+
+.form {
+    animation: form-entry .5s ease-in-out; 
+    background: #111;
+    background: linear-gradient(#004746, #111);
+    border: 6px solid var(--stark-med-blue);
+    box-shadow: 0 0 15px #00fffd;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 200px auto 0;
+    position: relative;
+    z-index: 4;
+    width: 60%;
+    transition: 0.4s;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -o-transition: 0.4s;
+    padding-bottom: 1rem;
+    height: 370px;
+    border-radius: 17px;
+}
+
+.form label {
+    color: white;
+    padding-top: 1rem;
+}
+
+#myAccountForm .fade-box {
+    padding-top: 1rem;
+}
+
+#signInForm, #forgotPassForm, #myAccountForm { 
+    height: unset !important;
+}
+
+.signUpInput {
+    background: #222;
+    background: linear-gradient(#333, #222);	
+    border: 1px solid #444;
+    border-radius: 5px;
+    box-shadow: 0 2px 0 #000;
+    color: #888;
+    display: block; 
+    font-family: 'Cabin', helvetica, arial, sans-serif;
+    font-size: 13px;
+    font-size: 1.3rem;
+    height: 40px;
+    margin: 20px auto 10px; 
+    text-indent: 1rem;
+    text-shadow: 0 -1px 0 #000;
+    width: 80%;
+}
+
+.signUpInput:focus {
+    animation: box-glow 1s ease-out infinite alternate;
+    background: #0B4252;
+    background: linear-gradient(#333933, #222922);
+    border-color: #00fffc;
+    box-shadow: 0 0 5px rgba(0, 255, 253, .2), inset 0 0 5px rgba(0, 255, 253, .1), 0 2px 0 #000;
+    color: #efe;
+    outline: none;
+}
+
+.signUpInput:invalid {
+    border: 2px solid red;
+    box-shadow: 0 0 5px rgba(255, 0, 0, .2), inset 0 0 5px rgba(255, 0, 0, .1), 0 2px 0 #000;
+}
+
+.signUpButton { 
+    animation: input-entry .5s ease-in; 
+    background: #222;
+    background: linear-gradient(#333, #222);
+    box-sizing: content-box;
+    border-left-color: #000; 
+    border-radius: 5px;
+    box-shadow: 0 2px 0 #000;
+    color: #fff;
+    display: block;
+    font-family: 'Cabin', helvetica, arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    height: 40px;
+    line-height: 40px;
+    margin: 20px auto; 
+    padding: 0; 
+    position: relative;
+    text-shadow: 0 -1px 0 #000;
+    width: 80%;
+    transition: .3s all;
+}	
+
+.logInDesc {
+    color: white;
+    display: inline-block;
+}
+
+#passErrorSignIn {
+    display: none;
+    width: 100%;
+    color: red;
+    position: absolute;
+    top: -1rem;
+    height: 3rem;
+    line-height: 3rem;
+    background-color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+#passErrorLogIn {
+    display: none;
+    width: 100%;
+    color: red;
+    position: absolute;
+    top: -1rem;
+    height: 3rem;
+    line-height: 3rem;
+    background-color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+#emailWasSent {
+    display: none;
+    width: 100%;
+    color: red;
+    position: absolute;
+    top: -1rem;
+    height: 3rem;
+    line-height: 3rem;
+    background-color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+#showSignInFormBtn, #showSignUpFormBtn {
+    color: var(--stark-light-blue);
+    display: inline-block;
+    cursor: pointer;
+}
+
+#emailMessage, #forgotPass {
+    color: white;
+}
+
+#forgotPassWrapper {
+    width: 100%;
+}
+
+#forgotPass {
+    display: inline-block;
+}
+
+#forgotPassBtn {
+    color: var(--stark-light-blue);
+    display: inline-block;
+    cursor: pointer;
+}
+
+#backToSignInFormBtn {
+    color: var(--stark-light-blue);
+    cursor: pointer;
+}
+
+/* =========================================
+Animation Keyframes
+========================================= */
+
+@keyframes logo-entry {
+    0% {
+        opacity: 0;
+    }	
+
+    80% {
+        opacity: 0; 
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes circle-entry {
+    0% {
+        opacity: 0;
+    }	
+
+    20% {
+        opacity: 0; 
+    }
+    100% {
+        opacity: 0.4;
+    }
+}
+
+@keyframes input-entry {
+    0% {
+        opacity: 0;
+    }	
+    90% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes form-entry {
+    0% {
+        height:0;
+        width: 0;
+        opacity: 0;   
+        padding: 0;
+    }	
+
+    20% {
+        height: 0;
+        border: 1px solid var(--stark-med-blue);
+        width: 0;
+        opacity: 0;  
+        padding: 0; 
+    }	
+
+    40% {
+        width: 0;
+        height: 220px;
+        border: 6px solid var(--stark-med-blue);
+        opacity: 1 ; 
+        padding: 0;
+    }
+
+    100% {
+        height: 220px; 
+        width: 500px;
+    }
+}
+
+@keyframes box-glow {
+    0% {
+        border-color: #00b8b6;
+        box-shadow: 0 0 5px rgba(0, 255, 253, .2), inset 0 0 5px rgba(0, 255, 253, .1), 0 2px 0 #000;
+    }	
+    100% {
+        border-color: var(--stark-light-blue);
+        box-shadow: 0 0 20px rgba(0, 255, 253, .6), inset 0 0 10px rgba(0, 255, 253, .4), 0 2px 0 #000;
+    }
+}
+
+@keyframes text-glow {
+    0% {
+        color: var(--stark-med-blue);
+        text-shadow:0 0 10px #000, 0 0 20px #000, 0 0 30px #000, 0 0 40px #000, 0 0 50px #000, 0 0 60px #000, 0 0 70px #000;
+    }
+
+    100% {
+        color: var(--stark-light-blue);
+        text-shadow: 0 0 20px rgba(0, 255, 253, .6), 0 0 10px rgba(0, 255, 253, .4), 0 2px 0 #000;
+    }
+}
+
+@keyframes before-glow {
+    0% {
+        border-bottom: 10px solid var(--stark-med-blue);
+    }	
+    100% {
+        border-bottom: 10px solid var(--stark-light-blue);
+    }
+}
+
+@keyframes after-glow {
+    0% {
+        border-top: 16px solid var(--stark-med-blue);
+    }	
+    100% {
+        border-top: 16px solid var(--stark-light-blue);
+    }
+}
+
+@media only screen and (min-width: 765px) {
+
+    .signUpButton:hover {
+        -webkit-box-reflect: unset;
+        color: #00fffd;
+    }
+    
+    #signUpForm:hover, #signInForm:hover, #myAccountForm:hover {
+        border: 6px solid #00fffd;
+        box-shadow: 0 0 25px #00fffd;
+        transition: 1s all ;
+    }
+}
+
+@media only screen and (max-width: 765px) {
+
+    /* .goHomeSignInBtnWrapper {
+        top: -1rem;
+    } */
+
+    #logo h1 {
+        font-size: 1.5rem;
+        top: 7rem;
+    }
+
+    #logo h1:before {
+        border-left: 335px solid transparent;
+        right: 5rem;
+    }
+
+    #logo h1:after {
+        right: 4.35rem;
+    }
+
+    .form {
+        width: 400px;
+    }
+
+    .signUpInput {
+        width: 90%;
+    }
+
+    .signUpButton {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+
+    /* .goHomeSignInBtnWrapper {
+        top: -1rem;
+    } */
+
+    #logo {
+        width: 100%;
+    }
+
+    #logo h1 {
+        top: 7rem;
+    }
+
+    #logo h1:before, #logo h1:after {
+        display: none;
+    }
+
+    .form {
+        width: 290px;
+    }
+    .signUpInput {
+        width: 80%;
+        height: 30px;
+    }
+
+    .signUpButton {
+        width: 80%;
+    }
+}
