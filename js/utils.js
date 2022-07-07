@@ -1,10 +1,8 @@
-
 const goToTop = () => {
     $('html,body').animate({ scrollTop: 0 }, 'slow');
 }
 
 function scrollBtn () {
-
     if ($(this).scrollTop() > 550) {
         $('#goToTopBtn').fadeIn();
     }
@@ -44,7 +42,6 @@ const convertMinsToHrsMinsHeb = (mins) => {
 }
 
 const changeMonthName = (month, type) => {
-
     if (type == 1) {
         switch (month) {
             case 0: {
@@ -96,7 +93,6 @@ const changeMonthName = (month, type) => {
                 break;
             }  
         }
-
     } else {
         switch (month) {
             case 0: {
@@ -177,7 +173,6 @@ const changeDayName = (day) => {
 }
 
 const changeMonthNameHeb = (month, type) => {
-
     if (type == 1) {
         switch (month) {
             case 0: {
@@ -229,7 +224,6 @@ const changeMonthNameHeb = (month, type) => {
                 break;
             }  
         }
-
     } else {
         switch (month) {
             case 0: {
@@ -310,26 +304,27 @@ const changeDayNameHeb = (day) => {
 }
 
 const getAge = (dateString, type, deadBirthDate) => {
-
     if (type == 1) {
         var today = new Date();
         var birthDate = new Date(dateString);
-
         var age = today.getFullYear() - birthDate.getFullYear();
         var m = today.getMonth() - birthDate.getMonth();
+
         if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
             age--;
         }
+
         return age; 
     } else {
         var today = new Date(dateString);
         var birthDate = new Date(deadBirthDate);
-
         var age = today.getFullYear() - birthDate.getFullYear();
         var m = today.getMonth() - birthDate.getMonth();
+
         if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
             age--;
         }
+
         return age; 
     }
 }
@@ -367,7 +362,6 @@ const toggleClass = (elem, className) => {
 }
 
 const removePopup = (container) => {
-
     $(document).mouseup((e) => {
         if (container.is(e.target) && container.has(e.target).length === 0) {
             container.hide();
