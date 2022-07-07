@@ -24,7 +24,6 @@ let didPopularLoaded = false;
 let didImagesLoaded = false;
 let directorCounter = 0;
 let darkMode = false;
-
 let lang = 'en-US';
 
 const regex = /^[אבגדהוזחטיכלמנסעפצקרשתץףךןם:!1234567890' ]+$/i;
@@ -42,9 +41,7 @@ const movieActorsUrl = "https://api.themoviedb.org/3/person/";
 const tvShowInfoUrl = "https://api.themoviedb.org/3/tv/";
 
 $(document).ready(() => {
-
     $('#darkToggle').click(() => {
-
         $('#contentWrapper').css({'pointer-events': 'none', 'opacity': '.3'});
 
         if (!$('#darkToggle').hasClass('dark')) {
@@ -158,7 +155,6 @@ const hoverEffect = (object) => {
 
         $(object).hover(
             function() {
-
             }, function() {
                 $(object).removeClass('rest');
                 $(this).removeClass('chosenHover');
@@ -175,19 +171,14 @@ const scrollIndicator = () => {
 }
 
 const showPopular = () => {
-
     let length = $(document).height() - Number($(window).height() + 500);
 
     if ($(window).scrollTop() > length && $('.popularPerson').length == 0 && !$('.popularPerson').is(':visible') && page == 0 && !didPopularLoaded) {
-
         didPopularLoaded = true;
-
         $('#contentWrapper').css({'pointer-events': 'none', 'opacity': '.5'});
         $('#spinner').fadeIn('fast');
-
         getPopularPeople(1, 1);
         getPopularPeople(2, 2);
-
         document.querySelector('#captainmarvel').scrollIntoView({ behavior: 'smooth' });
 
         setTimeout(() => {
@@ -196,7 +187,6 @@ const showPopular = () => {
             if ($(window).width() > 765) {
                 hoverEffect($('.popularPerson'))
             }
-
         }, 1000)
     }
 }
@@ -207,172 +197,8 @@ const refreshFunctions = () => {
     getTrendingUrl = "https://api.themoviedb.org/3/trending/all/day?api_key=" + tmdbKey + "&language=" + lang + "&page=";
 }
 
-const changeLang = (langNum) => {
-
-    if (langNum == 1) {
-        $('#isFlag').css({'pointer-events': 'none', 'opacity': '.5'});
-        $('#usFlag').css({'pointer-events': 'all', 'opacity': '1'});
-        lang = 'he';
-
-        $("head").append("<link rel='stylesheet' type='text/css' href='css/main_he.min.css' id='hebCss'/>");
-
-        $('#searchMovie').attr('placeholder', 'חפש סרטים, סדרות או אנשים');
-        $('#switchContentBtn').html('בקרוב');
-        $('#switchContentBtn2').html('טרנדי');
-        $('#switchContentBtn3').html('עכשיו בקולנוע');
-
-        $('#noInstagramPop h2').html('אין פרופיל אינסטגרם');
-        $('#noImdbPop h2').html('אין פרופיל IMDB');
-        $('#changeUsernamePop h2').html('שינוי שם משתמש');
-        $('#noInstagramPop .popupBtn').html('סגור');
-        $('#noImdbPop .popupBtn').html('סגור');
-        $('#closeUserPopBtn').html('סגור');
-        $('#changeUserPopBtn').html('שנה שם');
-        $('#changeNameDesc').html('שנה שם מ <span id="prevName"></span> ל <span id="nextName"></span>?');
-
-        $('#noGenrePop h2').html('אין תוצאות');
-        $('#noGenrePop .popupBtn').html('סגור');
-        $('#genreDesc').html('אין סרטי <span id="pickedGenre"></span>');
-
-        $('#genrePop h2').html(`בחר ג'אנר`);
-        $('#genrePop .popupBtn').html('סגור');
-
-        $('#noFavoritesPop h2').html('אין מועדפים');
-        $('#noFavoritesPop p').html('הוסף / הוסיפי סרטים / סדרות לרשימת המועדפים');
-        $('#noFavoritesPop .popupBtn').html('סגור');
-
-        $('#allBtn').html('כל הסרטים');
-        $('#actionBtn').html('אקשן');
-        $('#adventureBtn').html('הרפתקאה');
-        $('#animationBtn').html('אנימציה');
-        $('#comedyBtn').html('קומדיה');
-        $('#crimeBtn').html('פשע');
-        $('#documentaryBtn').html('דוקו');
-        $('#dramaBtn').html('דרמה');
-        $('#familyBtn').html('משפחה');
-        $('#fantasyBtn').html('פנטזיה');
-        $('#historyBtn').html('היסטוריה');
-        $('#horrorBtn').html('אימה');
-        $('#musicBtn').html('מוסיקה');
-        $('#mysteryBtn').html('מסתורין');
-        $('#romanceBtn').html('רומנטיקה');
-        $('#scienceFictionBtn').html('מדע בדיוני');
-        $('#tVMovieFictionBtn').html('סרט טלוויזיוני');
-        $('#thrillerBtn').html('מותחן');
-        $('#warBtn').html('מלחמה');
-        $('#westernBtn').html('מערבון');
-        
-        if (userLoggedIn) {  
-            $('#usernameMenu').html('שלום, ' + "<span id='usernameSpan'>" + capitalize(currentUser.get("username")) + "</span>");
-            $('#myAccountBtn').html('החשבון שלי');
-            $('#favoritesBtn').html('מועדפים');
-            $('#logoutBtn').html('התנתק/י');
-        }
-
-        if(!didChangeLang)  {
-
-            setTimeout(() => {
-                $('#hebrewLang').show();
-            }, 1000)
-            
-            didChangeLang = true;
-        }
-
-    } else {
-        $('#usFlag').css({'pointer-events': 'none', 'opacity': '.5'});
-        $('#isFlag').css({'pointer-events': 'all', 'opacity': '1'});
-        lang = 'en-US';
-
-        $('#hebCss').remove();
-        $('#searchMovie').attr('placeholder', 'Search a Movie, Person or TV Show');
-
-        $('#switchContentBtn').html('Upcoming');
-        $('#switchContentBtn2').html('Trending');
-        $('#switchContentBtn3').html('Playing Now');
-
-        $('#noInstagramPop h2').html('No Instagram Profile');
-        $('#noImdbPop h2').html('No Imdb Profile');
-        $('#changeUsernamePop h2').html('Username Change');
-        $('#noInstagramPop .popupBtn').html('Close');
-        $('#noImdbPop .popupBtn').html('Close');
-        $('#closeUserPopBtn').html('Close');
-        $('#changeUserPopBtn').html('Change Name');
-        $('#changeNameDesc').html('Change Username From <span id="prevName"></span> To <span id="nextName"></span>?');
-
-        $('#noGenrePop h2').html('No Results');
-        $('#noGenrePop .popupBtn').html('Close');
-        $('#genreDesc').html('No <span id="pickedGenre"></span> Movies');
-
-        $('#genrePop h2').html('Pick A Genre');
-        $('#genrePop .popupBtn').html('Close');
-
-        $('#noFavoritesPop h2').html('No Favorites');
-        $('#noFavoritesPop p').html('Add Some Favorites Movies / TV Shows To Your List');
-        $('#noFavoritesPop .popupBtn').html('Close');
-
-        $('#allBtn').html('All Movies');
-        $('#actionBtn').html('Action');
-        $('#adventureBtn').html('Adventure');
-        $('#animationBtn').html('Animation');
-        $('#comedyBtn').html('Comedy');
-        $('#crimeBtn').html('Crime');
-        $('#documentaryBtn').html('Documentary');
-        $('#dramaBtn').html('Drama');
-        $('#familyBtn').html('Family');
-        $('#fantasyBtn').html('Fantasy');
-        $('#historyBtn').html('History');
-        $('#horrorBtn').html('Horror');
-        $('#musicBtn').html('Music');
-        $('#mysteryBtn').html('Mystery');
-        $('#romanceBtn').html('Romance');
-        $('#scienceFictionBtn').html('Science Fiction');
-        $('#tVMovieFictionBtn').html('TV Movie');
-        $('#thrillerBtn').html('Thriller');
-        $('#warBtn').html('War');
-        $('#westernBtn').html('Western');
-
-        if (userLoggedIn) {  
-            $('#usernameMenu').html('Hello, ' + "<span id='usernameSpan'>" + capitalize(currentUser.get("username")) + "</span>");
-            $('#myAccountBtn').html('My Account');
-            $('#favoritesBtn').html('Favorites');
-            $('#logoutBtn').html('Logout');
-        }
-    }
-
-    refreshFunctions();
-
-    if (page == 0) {
-
-        $('.movieWrapper').remove();
-        $('#popularPeopleWrapper').empty().hide();
-
-        getPlayingNow();
-        $('#contentWrapper').css({'pointer-events': 'none', 'opacity': .5});
-        $('html').css('overflow-y', 'hidden');  
-        $('#spinner').fadeIn('fast');
-    
-        setTimeout(() => {
-            $('#spinner').hide();
-            $('#contentWrapper').css({'pointer-events': 'all', 'opacity': 1});
-            $('html').css('overflow-y', 'unset'); 
-            window.scrollTo(0, 1);
-
-            if ($(window).width() > 765) {
-                hoverEffect($('.movieWrapper'))
-            }
-
-        }, 1000); 
-
-    } else {
-        goHome();
-    }
-}
-
 const lazyload = () => {
-
     let lazyloadImages = document.querySelectorAll(".lazy");
-
-    let scrollTop = window.pageYOffset;
 
     lazyloadImages.forEach((img) => {
         if (img.getBoundingClientRect().top + 200 < (window.innerHeight)) {
@@ -383,7 +209,6 @@ const lazyload = () => {
 }
 
 const switchContent = (type) => {
-
     window.onscroll = () => {
         scrollIndicator();
         scrollBtn();
@@ -401,7 +226,6 @@ const switchContent = (type) => {
     $('#contentWrapper').css({'pointer-events': 'none', 'opacity': '.5'});
 
     if (type == 1) {
-
         $('#switchContentBtn2, #switchContentBtn3').show();
         $('#switchContentBtn').hide();
 
@@ -433,7 +257,6 @@ const switchContent = (type) => {
             }
 
         }, 1000)
-
     } else if(type == 2) {
 
         $('#switchContentBtn, #switchContentBtn2').show();
@@ -441,7 +264,6 @@ const switchContent = (type) => {
 
         getPlayingNow();
         setTimeout(() => {
-
             $('#container, #switchContentBtnWrapper').show();
 
             var interval = setInterval(() => {
@@ -524,7 +346,7 @@ const getTrendingObjects = () => {
         finalNameText = 'Sort By Name';
     }
 
-    let dateSortBtn = $('<button>', {
+    $('<button>', {
         class: 'dateSortBtn',
         text: finalDateText,
         click:() => {
@@ -532,7 +354,7 @@ const getTrendingObjects = () => {
         }
     }).appendTo(btnWrapper);
 
-    let titleSortBtn = $('<button>', {
+    $('<button>', {
         class: 'titleSortBtn',
         text: finalNameText,
         click: () => {
@@ -555,14 +377,12 @@ const getTrendingObjects = () => {
 }
 
 const getInfo = (chosenUrl, times, type) => {
-    
     $.ajax({
         type: 'GET',
         crossDomain: true,
         url: chosenUrl + times,
         dataType: "json",
         success: (data) => {       
-
             if (type == 1) {
                 let btnWrapper = $('<div>', {
                     class: 'btnWrapper btnWrapperPlayingNow'
@@ -581,7 +401,7 @@ const getInfo = (chosenUrl, times, type) => {
                     finalNameText = 'Sort By Name';
                 }
             
-                let dateSortBtn = $('<button>', {
+                $('<button>', {
                     class: 'dateSortBtn',
                     text: finalDateText,
                     click: () =>{
@@ -589,7 +409,7 @@ const getInfo = (chosenUrl, times, type) => {
                     }
                 }).appendTo(btnWrapper);       
 
-                let titleSortBtn = $('<button>', {
+                $('<button>', {
                     class: 'titleSortBtn',
                     text: finalNameText,
                     click: () => {
@@ -597,7 +417,7 @@ const getInfo = (chosenUrl, times, type) => {
                     }
                 }).appendTo(btnWrapper);
 
-                let genreSortBtn = $('<i>', {
+                $('<i>', {
                     class: 'fas fa-window-restore',
                     id: 'genreSortBtn',
                     click: () => {
@@ -607,13 +427,10 @@ const getInfo = (chosenUrl, times, type) => {
             }
 
             let results = data.results;
-
             let todayDate = new Date();
             
             for (let i = 0; i < results.length; i++) {
-
                 if (results[i].media_type == 'movie' || results[i].media_type == 'tv' || chosenUrl == nowPlayingUrl || chosenUrl == upcomingUrl) {
-
                     let finalDateForShow;
                     
                     if (results[i].media_type == 'tv') {
@@ -660,7 +477,6 @@ const getInfo = (chosenUrl, times, type) => {
                     movieId = results[i].id;
                     let tmdbPathPosterPath = 'https://image.tmdb.org/t/p/w1280' + path;
                     let tmbdBackdropPath = 'https://image.tmdb.org/t/p/w1280' + movieImage;
-
                     let finalDate;
 
                     if (finalDateForShow == '') {
@@ -686,7 +502,6 @@ const getInfo = (chosenUrl, times, type) => {
                     }
 
                     let movieDate = new Date(JSON.stringify(finalDateForShow));
-
                     let genreArr = results[i].genre_ids;
 
                     if (type == 2 && movieDate > todayDate || type !== 2) {
@@ -702,7 +517,6 @@ const getInfo = (chosenUrl, times, type) => {
                         }).appendTo($('#container'));
 
                         if (userLoggedIn && results[i].media_type !== 'person') {   
-
                             let finalTypeToAdd;
 
                             if (results[i].media_type == 'tv') {
@@ -711,7 +525,7 @@ const getInfo = (chosenUrl, times, type) => {
                                 finalTypeToAdd = 1;
                             }
 
-                            let addToFavoritesBtn = $('<img>', {
+                            $('<img>', {
                                 class: 'addToFavoritesBtn',
                                 src: './images/emptyStar.png',
                                 alt: 'star',
@@ -766,7 +580,7 @@ const getInfo = (chosenUrl, times, type) => {
                                 class: 'movieFullNameWrapper',
                             }).appendTo(wrapper);
                 
-                            let movieFullName = $('<p>', {
+                            $('<p>', {
                                 class: 'movieFullName',
                                 text: title
                             }).appendTo(movieFullNameWrapper);
@@ -814,33 +628,31 @@ const getInfo = (chosenUrl, times, type) => {
                         }).appendTo(wrapper);
     
                         if (finalVoteText !== 'TBD') {
-
                             let voteWrapper = $('<div>', {
                                 class: 'voteWrapper',
                             }).appendTo(imgDateWrapper);
 
-                            let voteBackground = $('<span>', {
+                            $('<span>', {
                                 class: 'voteBackground',
                                 voteCount: finalVoteText.replace('%', '')
                             }).appendTo(voteWrapper);
 
-                            
                             let voteTextContent = $('<div>', {
                                 class: 'voteTextContent',
                             }).appendTo(voteWrapper);
 
-                            let vote = $('<span>', {
+                            $('<span>', {
                                 class: 'vote',
                                 text: finalVoteText
                             }).appendTo(voteTextContent);
                         }
     
-                        let movieDate = $('<p>', {
+                        $('<p>', {
                             class: 'movieDate',
                             text: finalDate
                         }).appendTo(imgDateWrapper);
     
-                        let img = $('<img>', {
+                        $('<img>', {
                             class: 'movieImg lazy',
                             alt: 'movieImg',
                             'data-src': tmdbPathPosterPath,
@@ -854,7 +666,6 @@ const getInfo = (chosenUrl, times, type) => {
                 $.each($('.voteBackground'), (key, value) => {
                     let height = $(value).attr('voteCount');
                     $(value).css('height', height + '%');
-
                     var r = height < 70 ? 255 : Math.floor(255-(height*2-100)*255/100);
                     var g = height >= 70 ? 255 : Math.floor((height*2)*255/100);
 
@@ -882,11 +693,8 @@ const getInfo = (chosenUrl, times, type) => {
 }
 
 const pickGenre = (pickedGenre) => {
-
     $('#genrePop').hide();
-    
     let genreResults = 0;
-
     $('.movieWrapper').hide();
 
     $.each($('.movieWrapper'), (key, value) => {
@@ -1074,7 +882,7 @@ const getUpcomingMovies = (type, times) => {
             finalNameText = 'Sort By Name';
         }
 
-        let dateSortBtn = $('<button>', {
+        $('<button>', {
             class: 'dateSortBtn',
             text: finalDateText,
             click: () => {
@@ -1082,7 +890,7 @@ const getUpcomingMovies = (type, times) => {
             }
         }).appendTo(btnWrapper);
 
-        let titleSortBtn = $('<button>', {
+        $('<button>', {
             class: 'titleSortBtn',
             text: finalNameText,
             click: () => {
@@ -1090,7 +898,7 @@ const getUpcomingMovies = (type, times) => {
             }
         }).appendTo(btnWrapper);
 
-        let genreSortBtn = $('<i>', {
+        $('<i>', {
             class: 'fas fa-window-restore',
             id: 'genreSortBtn',
             click: () => {
@@ -1125,11 +933,9 @@ const getPopularPeople = (type, times) => {
         url: finalUrl,
         dataType: "json",
         success: (data) => {
-
             $('#popularPeopleWrapper').show();
 
             if (type == 1) {
-
                 let finalHeaderText;
 
                 if (lang == 'he') {
@@ -1138,14 +944,13 @@ const getPopularPeople = (type, times) => {
                     finalHeaderText = 'Popular People';
                 }
     
-                let popularPeopleHeader = $('<h2>', {
+                $('<h2>', {
                     id: 'popularPeopleHeader',
                     text: finalHeaderText
                 }).appendTo(popularPeopleWrapper); 
             }
 
             for (let i = 0; i < data.results.length; i++) {
-                
                 let popularPerson = $('<div>', {
                     class: 'popularPerson',
                     name: data.results[i].name,
@@ -1162,7 +967,7 @@ const getPopularPeople = (type, times) => {
                     }
                 }).appendTo($('#popularPeopleWrapper'));
 
-                let popularPersonName = $('<p>', {
+                $('<p>', {
                     class: 'popularPersonName',
                     text: data.results[i].name,
                 }).appendTo(popularPerson);
@@ -1175,7 +980,7 @@ const getPopularPeople = (type, times) => {
                     finalPersonImg = 'https://image.tmdb.org/t/p/w1280' + data.results[i].profile_path;
                 }
 
-                let popularPersonImg = $('<img>', {
+                $('<img>', {
                     class: 'popularPersonImg lazy',
                     alt: 'Person Img',
                     'data-src': finalPersonImg,
@@ -1245,12 +1050,11 @@ const showResults = () => {
 
             let queryUrl = searchMovieUrl + cleanInput + '&language=' + lang;
 
-            let ajax2 = $.ajax({
+            $.ajax({
                 url: queryUrl,
                 dataType: 'json',
                 jsonp: false,
                 success: (result) => {
-
                     let todayDate = new Date();
 
                     if (result == 'undefind' || result == null) {
@@ -1266,7 +1070,6 @@ const showResults = () => {
                     $('#results').animate({ scrollTop: 0 }, 'fast');
 
                     for (let i = 0; i < result.results.length; i++) {
-
                         if (result.results[i].media_type !== 'person') {
                             let finalTitle;
                             let finalOriginalTitle;
@@ -1360,7 +1163,7 @@ const showResults = () => {
                                 class: 'posterWrapper'
                             }).appendTo(resultWrapper);
     
-                            let poster = $('<img>', {
+                            $('<img>', {
                                 class: 'poster',
                                 alt: 'poster',
                                 src: posterUrl
@@ -1383,7 +1186,7 @@ const showResults = () => {
                                 class: 'searchStarImg',
                             }).appendTo(resultWrapper);
 
-                            let searchVoteBackground = $('<span>', {
+                            $('<span>', {
                                 class: 'searchVoteBackground',
                                 voteCount: finalVoteText.replace('%', '')
                             }).appendTo(voteWrapper);
@@ -1392,7 +1195,7 @@ const showResults = () => {
                                 class: 'searchVoteTextContent',
                             }).appendTo(voteWrapper);
 
-                            let vote = $('<span>', {
+                            $('<span>', {
                                 class: 'voteSearch',
                                 text: finalVoteText
                             }).appendTo(voteTextContent);
@@ -1400,13 +1203,12 @@ const showResults = () => {
                             if ((result.results[i].release_date !== null && result.results[i].release_date !== 'undefined' && result.results[i].release_date !== undefined &&
                             result.results[i].release_date !== '') || (result.results[i].first_air_date !== null && result.results[i].first_air_date !== 'undefined' &&
                             result.results[i].first_air_date !== undefined && result.results[i].first_air_date !== '')) {
-                                let resultMovieDate = $('<p>', {
+                                $('<p>', {
                                     class: 'resultMovieDate',
                                     text: finalDate
                                 }).appendTo(movieDescription);   
                             }
                         } else {
-
                             result.results[i].popularity = Math.floor(Number(result.results[i].popularity.toFixed(1)));
                             result.results[i].popularity = JSON.stringify(result.results[i].popularity);
 
@@ -1452,7 +1254,7 @@ const showResults = () => {
                                 class: 'posterWrapper'
                             }).appendTo(resultWrapper);
 
-                            let poster = $('<img>', {
+                            $('<img>', {
                                 class: 'poster',
                                 alt: 'poster',
                                 src: posterUrl
@@ -1462,7 +1264,7 @@ const showResults = () => {
                                 class: 'description'
                             }).appendTo(resultWrapper);
     
-                            let resultMovieTitle = $('<p>', {
+                            $('<p>', {
                                 class: 'resultMovieTitle',
                                 text: finalTitle
                             }).appendTo(movieDescription);
@@ -1471,7 +1273,7 @@ const showResults = () => {
                                 class: 'searchStarImg',
                             }).appendTo(resultWrapper);
 
-                            let searchVoteBackground = $('<span>', {
+                            $('<span>', {
                                 class: 'searchVoteBackground',
                                 voteCount: finalVoteText.replace('%', '')
                             }).appendTo(voteWrapper);
@@ -1480,7 +1282,7 @@ const showResults = () => {
                                 class: 'searchVoteTextContent',
                             }).appendTo(voteWrapper);
 
-                            let vote = $('<span>', {
+                            $('<span>', {
                                 class: 'voteSearch',
                                 text: finalVoteText
                             }).appendTo(voteTextContent);
@@ -1489,10 +1291,8 @@ const showResults = () => {
 
                     setTimeout(() => {
                         $.each($('.searchVoteBackground'), (key, value) => {
-
                             let height = $(value).attr('voteCount');
                             $(value).css('height', height + '%');
-        
                             var r = height < 70 ? 255 : Math.floor(255-(height*2-100)*255/100);
                             var g = height >= 70 ? 255 : Math.floor((height*2)*255/100);     
                             
@@ -1520,7 +1320,6 @@ const showResults = () => {
 const sortPopularMovies = (container, elem1, type) => {
     let children;
     $.each($(container), function (key, value) {
-
         let ids = [], obj, i, len;
 
         switch(type) {
@@ -1539,7 +1338,6 @@ const sortPopularMovies = (container, elem1, type) => {
         }
 
         for (i = 0, len = children.length; i < len; i++) {
-
             obj = {};
             obj.element = children[i];
             let elem2 = $(children[i]).attr(elem1);
@@ -1556,7 +1354,6 @@ const sortPopularMovies = (container, elem1, type) => {
 }
 
 const sortResults = (container, elem1, type) => {
-
     let children;
     $.each($(container), function (key, value) {
 
@@ -1569,7 +1366,6 @@ const sortResults = (container, elem1, type) => {
         }
 
         for (i = 0, len = children.length; i < len; i++) {
-
             obj = {};
             obj.element = children[i];
             let elem2 = $(children[i]).attr(elem1);
@@ -1594,16 +1390,12 @@ const sortResults = (container, elem1, type) => {
 }
 
 const getPlayingNow = () => {
-
     $('.movieWrapper, .btnWrapper').remove();
-
     getInfo(nowPlayingUrl, 1, 1);
 }
 
 const sortMovies = (elem1, kind, type) => {
-
     didPopularLoaded = false;
-
     $('#popularPeopleWrapper').empty().hide();
 
     $.each($('#container'), function (key, value) {
@@ -1654,10 +1446,8 @@ const sortMovies = (elem1, kind, type) => {
                         ids.sort((a, b) => {
                             return a.idNum.localeCompare(b.idNum);
                         });
-
                         counter = 2;
                         break;
-
                     case 2:
                         ids.sort((a, b) => {
                             return b.idNum.localeCompare(a.idNum);
@@ -1679,7 +1469,6 @@ const sortMovies = (elem1, kind, type) => {
 }
 
 const goHome = () => {
-
     window.onscroll = () => {
         scrollIndicator();
         scrollBtn();
@@ -1688,7 +1477,6 @@ const goHome = () => {
     };
 
     $('#socialLinksWrapper, #chosenMovie .addToFavoritesBtn, .creditsHeader').remove();
-
     $('#chosenMovie').attr('chosenId', '');
 
     if(userLoggedIn) {
@@ -1740,10 +1528,9 @@ const goHome = () => {
 }
 
 const getPersonInfo = (personId, personName) => {
-
     url = personName.replace(/[^A-Za-z0-9]+/g, "");
-
     window.history.pushState('page2', 'Title', '?' + url);
+
     window.addEventListener('popstate', (event) => {
         window.location.reload();
     });
@@ -1754,15 +1541,10 @@ const getPersonInfo = (personId, personName) => {
         url: movieActorsUrl + personId + "?api_key=" + tmdbKey + "&language=" + lang,
         dataType: "json",
         success: (data) => {
-
             personNames = [];
-
             personNames.push(data.also_known_as);
-
             page = 1;
-
             $('.logo').css('cursor', 'pointer');
-
             let finalObjectImage;
 
             if (data.profile_path == null || data.profile_path == '') {
@@ -1785,18 +1567,17 @@ const getPersonInfo = (personId, personName) => {
                     href: persnImdb + imdbId
                 }).appendTo(detailsWrapper);
 
-                let imdbImage = $('<img>', {
+                $('<img>', {
                     class: 'personImdbImage',
                     src: finalObjectImage,
                     alt: 'imdbImage',
                 }).appendTo(imdbLink);
-
             } else {
                 let imdbLink = $('<a>', {
                     class: 'imdbLink',
                 }).appendTo(detailsWrapper);
 
-                let imdbImage = $('<img>', {
+                $('<img>', {
                     class: 'personImdbImage noImdbLink',
                     src: finalObjectImage,
                     alt: 'imdbImage',
@@ -1804,19 +1585,16 @@ const getPersonInfo = (personId, personName) => {
             }
 
             if (data.birthday == null && data.deathday == null && data.homepage == null && data.place_of_birth == null) {
-                
             } else {
                 let personDetailWrapper = $('<div>', {
                     id: 'personDetailWrapper',
                 }).appendTo(detailsWrapper);
 
                 if (data.birthday !== null) {
-
                     let date = new Date(data.birthday);
                     let day = date.getDate();
                     let month = date.getMonth() + 1;
                     let yearToShow = date.getFullYear();
-
                     let finalBirthText;
                     let finalAgeText;
                     let finalAge = getAge(data.birthday, 1);
@@ -1838,7 +1616,7 @@ const getPersonInfo = (personId, personName) => {
                         class: 'personCont'
                     }).appendTo(personDetailWrapper);
 
-                    let birthDateImg = $('<i>', {
+                    $('<i>', {
                         class: 'fas fa-birthday-cake',
                     }).appendTo(birthDateWrapper);
 
@@ -1848,7 +1626,7 @@ const getPersonInfo = (personId, personName) => {
                     }).appendTo(birthDateWrapper);
 
                     if (data.deathday == null) {
-                        let personBirthAge = $('<span>', {
+                        $('<span>', {
                             id: 'personBirthAge',
                             text: finalAgeText,
                         }).appendTo(personBirthDate);
@@ -1860,7 +1638,6 @@ const getPersonInfo = (personId, personName) => {
                     let day = date.getDate();
                     let month = date.getMonth() + 1;
                     let yearToShow = date.getFullYear();
-
                     let finalDeathText;
                     let finalAgeText;
                     let finalAge = getAge(data.deathday, 2, data.birthday);
@@ -1882,7 +1659,7 @@ const getPersonInfo = (personId, personName) => {
                         class: 'personCont'
                     }).appendTo(personDetailWrapper);
 
-                    let birthDateImg = $('<i>', {
+                    $('<i>', {
                         class: 'fas fa-skull',
                     }).appendTo(deathDateWrapper);
 
@@ -1891,14 +1668,13 @@ const getPersonInfo = (personId, personName) => {
                         text: finalDeathText,
                     }).appendTo(deathDateWrapper);
 
-                    let personDeathAge = $('<span>', {
+                    $('<span>', {
                         id: 'personDeathAge',
                         text: finalAgeText,
                     }).appendTo(personDeathDate);
                 }
 
                 if (data.place_of_birth !== null) {
-
                     let finalBirthPlaceText;
 
                     if (lang == 'he') {
@@ -1912,28 +1688,27 @@ const getPersonInfo = (personId, personName) => {
                         class: 'personCont'
                     }).appendTo(personDetailWrapper);
 
-                    let birthDateImg = $('<i>', {
+                    $('<i>', {
                         class: 'fas fa-home',
                     }).appendTo(birthPlaceWrapper);
 
-                    let birthPlace = $('<p>', {
+                    $('<p>', {
                         id: 'birthPlace',
                         text: finalBirthPlaceText,
                     }).appendTo(birthPlaceWrapper);
                 }
 
                 if (data.homepage !== null) {
-
                     let homepageWrapper = $('<div>', {
                         id: 'homepageWrapper',
                         class: 'personCont'
                     }).appendTo(personDetailWrapper);
 
-                    let birthDateImg = $('<i>', {
+                    $('<i>', {
                         class: 'fab fa-chrome',
                     }).appendTo(homepageWrapper);
 
-                    let personHomepage = $('<a>', {
+                    $('<a>', {
                         id: 'personHomepage',
                         href: data.homepage,
                         target: '_blank', 
@@ -1943,7 +1718,6 @@ const getPersonInfo = (personId, personName) => {
             }
 
             if (data.biography !== '' && data.biography.length > 10) {
-
                 let finalClass;
 
                 if (data.biography.length > 250) {
@@ -1956,13 +1730,12 @@ const getPersonInfo = (personId, personName) => {
                     class: finalClass,
                 }).appendTo(detailsWrapper);
 
-                let description = $('<p>', {
+                $('<p>', {
                     class: 'objectDescription',
                     text: data.biography,
                 }).appendTo(descriptionWrapper);
 
                 if (data.biography.length > 250) {
-
                     let descriptionArrowWrapper = $('<div>', {
                         id: 'descriptionArrowWrapper',
                     }).appendTo(descriptionWrapper); 
@@ -1975,12 +1748,11 @@ const getPersonInfo = (personId, personName) => {
                         finalArrowSrc = './images/arrow.png';
                     }
 
-                    let descriptionArrow = $('<img>', {
+                    $('<img>', {
                         id: 'descriptionArrow',
                         src: finalArrowSrc,
                         alt: 'arrow',
                         click: () => {
-
                             if($('#descriptionArrowWrapper').hasClass('topArrow')) {
                                 $('.personInfo').css({'height': '4.5rem'});
                                 if (darkMode) {
@@ -1990,7 +1762,6 @@ const getPersonInfo = (personId, personName) => {
                                 }
 
                                 $('#descriptionArrowWrapper').removeClass('topArrow');
-
                             } else {
                                 var el = $('.personInfo');
                                 var curHeight = el.height();
@@ -2000,7 +1771,6 @@ const getPersonInfo = (personId, personName) => {
                                 if (darkMode) {
                                     $('.personInfo p').css('color', 'lightgray');
                                 } else {
-    
                                     $('.personInfo p').css('color', 'black');
                                 }
 
@@ -2020,16 +1790,13 @@ const getPersonInfo = (personId, personName) => {
 }
 
 const getPersonCredits = (personId) => {
-
     $.ajax({
         type: 'GET',
         crossDomain: true,
         url: movieActorsUrl + personId + '/combined_credits' + "?api_key=" + tmdbKey + "&language=" + lang,
         dataType: "json",
         success: (data) => {
-
             if (data.cast.length !== 0) {
-
                 let creditsWrapper = $('<div>', {
                     class: 'creditsWrapper',
                 }).appendTo($('#castWrapper'));
@@ -2046,7 +1813,7 @@ const getPersonCredits = (personId) => {
                     finalCreditsHeader = 'Credits';
                 }
 
-                let creditsHeader = $('<h2>', {
+                $('<h2>', {
                     class: 'creditsHeader',
                     text: finalCreditsHeader,
                 }).insertAfter($('#detailsWrapper'));
@@ -2064,18 +1831,14 @@ const getPersonCredits = (personId) => {
                         let movieImgPath = 'https://image.tmdb.org/t/p/w1280' + data.cast[i].poster_path;
     
                         if (data.cast[i].poster_path == 'undefined' || data.cast[i].poster_path == null || data.cast[i].poster_path == '') {
-    
                             movieImgPath = './images/noImage.png';
                         }
     
                         if (data.cast[i].character && data.cast[i].character.length > 25) {
-    
                             if (countInstances(data.cast[i].character, '/') > 1) {
-                            
                                 let maxLength = 25;
                                 let trimmedString = data.cast[i].character.substr(0, maxLength);
                                 trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")));
-    
                                 trimmedString = data.cast[i].character.split('/');
     
                                 if (trimmedString.length > 2) {
@@ -2083,11 +1846,9 @@ const getPersonCredits = (personId) => {
                                 } else {
                                     trimmedString = trimmedString[0] + '/' + trimmedString[1];
                                 }
-        
                             } else {
                                 trimmedString = data.cast[i].character;
                             }
-    
                         } else {
                             trimmedString = data.cast[i].character;
                         }
@@ -2115,7 +1876,7 @@ const getPersonCredits = (personId) => {
                                 'target': '_blank'
                             }).appendTo(creditName);
         
-                            let actorImg = $('<img>', {
+                            $('<img>', {
                                 class: 'actorImg',
                                 src: movieImgPath,
                                 alt: 'actorImg',
@@ -2132,7 +1893,7 @@ const getPersonCredits = (personId) => {
                                 $(moviePersonName).addClass('hebTitle');
                             }
         
-                            let characterName = $('<span>', {
+                            $('<span>', {
                                 class: 'characterName',
                                 text: trimmedString
                             }).appendTo(creditName);
@@ -2150,7 +1911,6 @@ const getPersonCredits = (personId) => {
                         $('#spinner').hide();
 
                         if (lang == 'he') {
-
                             for (let j = 0; j < personNames[0].length; j++) {
                                 if (regex.test(personNames[0][j])) {
                                     $('#chosenMovieTitle').html(personNames[0][j]);
@@ -2160,9 +1920,7 @@ const getPersonCredits = (personId) => {
                         }
 
                         $('.actorImg').click(function() {
-    
                             let nameToImdb = $(this).parent().parent().find($('.moviePersonName')).html().replace(':', '');
-    
                             $('#chosenMovieTitle, .movieWrapper, #socialLinksWrapper, .creditsHeader').remove();
                             $('#popularPeopleWrapper').empty().hide();
                             $('.chosenMovieSection').empty();
@@ -2198,7 +1956,7 @@ const getExternalIds = (personId) => {
         url: movieActorsUrl + personId + '/external_ids' + "?api_key=" + tmdbKey + "&language=" + lang,
         dataType: "json",
         success: (data) => {
-
+            console.log(data)
             if ((data.instagram_id == null && data.twitter_id == null && data.facebook_id == null) || (data.instagram_id == '' && data.twitter_id == '' && data.facebook_id == '')) {
             } else {
                 let socialLinksWrapper = $('<div>', {
@@ -2207,7 +1965,6 @@ const getExternalIds = (personId) => {
             }
 
             if (data.instagram_id !== null && data.instagram_id !== '') {
-
                 let instagramLink = $('<a>', {
                     class: 'instagramLink',
                     target: '_blank',
@@ -2215,7 +1972,7 @@ const getExternalIds = (personId) => {
                     href: 'https://www.instagram.com/' + data.instagram_id
                 }).appendTo(socialLinksWrapper);
     
-                let instagramImage = $('<img>', {
+                $('<img>', {
                     class: 'personInstagramImage',
                     src: './images/instagram.png',
                     alt: 'instagramImage',
@@ -2223,7 +1980,6 @@ const getExternalIds = (personId) => {
             }
 
             if (data.twitter_id !== null && data.twitter_id !== '') {
-
                 let twitterLink = $('<a>', {
                     class: 'twitterLink',
                     target: '_blank',
@@ -2231,7 +1987,7 @@ const getExternalIds = (personId) => {
                     href: 'https://www.twitter.com/' + data.twitter_id
                 }).appendTo(socialLinksWrapper);
     
-                let twitterImage = $('<img>', {
+                $('<img>', {
                     class: 'personTwitterImage',
                     src: './images/twitter.png',
                     alt: 'twitterImage',
@@ -2239,7 +1995,6 @@ const getExternalIds = (personId) => {
             }
 
             if (data.facebook_id !== null && data.facebook_id !== '') {
-
                 let facebookLink = $('<a>', {
                     class: 'facebookLink',
                     target: '_blank',
@@ -2247,7 +2002,7 @@ const getExternalIds = (personId) => {
                     href: 'https://www.facebook.com/' + data.facebook_id
                 }).appendTo(socialLinksWrapper);
     
-                let facebookImage = $('<img>', {
+                $('<img>', {
                     class: 'personFacebookImage',
                     src: './images/facebook2.png',
                     alt: 'facebookImage',
@@ -2267,29 +2022,24 @@ const getPersonMovieImages = (personId) => {
         url: movieActorsUrl + personId + '/tagged_images' + "?api_key=" + tmdbKey + "&language=" + lang,
         dataType: "json",
         success: (data) => {
-
             let objectGallery = $('<div>', {
                 class: 'objectGallery',
             }).appendTo($('#galleryWrapper'));
 
             for (let i = 0; i < data.results.length; i++) {
-
                 let galleryImg;
 
                 if (data.results[i].media.backdrop_path !== null) {
-
                     galleryImg = data.results[i].media.backdrop_path;
-
                     let galleryImgPath;
 
                     if (galleryImg == null || galleryImg == '') {
-    
                         galleryImgPath = './images/noImage.png';
                     } else {
                         galleryImgPath = 'https://image.tmdb.org/t/p/w1280' + galleryImg;
                     }
 
-                    let movieGalleryImg = $('<img>', {
+                    $('<img>', {
                         class: 'movieGalleryImg lazy',
                         'data-src': galleryImgPath,
                         src: './images/stock.png',
@@ -2311,13 +2061,12 @@ const getPersonImages = (personId) => {
         url: movieActorsUrl + personId + '/images' + "?api_key=" + tmdbKey + "&language=" + lang,
         dataType: "json",
         success: (data) => {
-
             let objectGallery = $('<div>', {
                 class: 'objectGallery',
             }).appendTo($('#galleryWrapper'));
 
             for (let i = 0; i < data.profiles.length; i++) {
-                let movieGalleryImg = $('<img>', {
+                $('<img>', {
                     class: 'movieGalleryImg personGalleryImage lazy',
                     'data-src': 'https://image.tmdb.org/t/p/w1280' + data.profiles[i].file_path,
                     src: './images/stock.png',
@@ -2331,10 +2080,8 @@ const getPersonImages = (personId) => {
     })
 }
 
-const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
-
+const getObjectInfo = (objectId, originalTitle, kind) => {
     $('#chosenMovie').attr('chosenId', objectId);
-
     arr = [];
     let url;
     let tmdbUrl;
@@ -2379,7 +2126,6 @@ const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
                 imdbId = data.imdb_id;
                 let movieReleaseDate = data.release_date;
                 date = new Date(movieReleaseDate);
-
             } else {
                 let tvShowReleaseDate = data.first_air_date;
                 date = new Date(tvShowReleaseDate);
@@ -2388,7 +2134,6 @@ const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
             let finalImg;
 
             if (objectImage == null) {
-
                 if (finalImg == null) {
                     finalImg = './images/stockMovie.jpg';
                 } else {
@@ -2433,30 +2178,27 @@ const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
                 }).appendTo(detailsWrapper);
             }
 
-            let imdbImage = $('<img>', {
+            $('<img>', {
                 class: 'imdbImage',
                 src: finalImg,
                 alt: 'imdbImage',
             }).appendTo(imdbLink);
 
             if (data.tagline !== '') {
-
-                let tagline = $('<div>', {
+                $('<div>', {
                     class: 'tagline',
                     text: data.tagline
                 }).appendTo(detailsWrapper);
             }
 
             if (data.production_companies !== 0 && data.production_companies !== undefined) {
-
                 let productionCompaniesWrapper = $('<div>', {
                     id: 'productionCompaniesWrapper',
                 }).appendTo(detailsWrapper);
 
                 for (let i = 0; i < data.production_companies.length; i++) {
-
                     if (data.production_companies[i].logo_path !== null && data.production_companies[i].logo_path !== undefined) {
-                        let productionCompany = $('<img>', {
+                        $('<img>', {
                             class: 'productionCompany',
                             alt: data.production_companies[i].name,
                             src: 'https://image.tmdb.org/t/p/w1280' + data.production_companies[i].logo_path,
@@ -2464,6 +2206,7 @@ const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
 
                         var srcs = [];
                         var temp;
+
                         $(".productionCompany").filter(function(){
                             temp = $(this).attr("src");
                             if($.inArray(temp, srcs) < 0){
@@ -2477,12 +2220,11 @@ const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
             }
 
             if (data.overview !== '') {
-
                 let descriptionWrapper = $('<div>', {
                     class: 'descriptionWrapper',
                 }).appendTo(detailsWrapper);
 
-                let description = $('<p>', {
+                $('<p>', {
                     class: 'objectDescription',
                     text: data.overview,
                 }).appendTo(descriptionWrapper);
@@ -2493,9 +2235,7 @@ const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
             }).appendTo(detailsWrapper);
 
             if (kind == 1) {
-
                 if (withCommas !== '0' && withCommas !== 0) {
-
                     let finalRevenueText;
 
                     if (lang == 'he') {
@@ -2509,13 +2249,12 @@ const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
                         text: finalRevenueText,
                     }).appendTo(objectDetails);
 
-                    let dollarIcon = $('<i>', {
+                    $('<i>', {
                         class: 'fas fa-money-bill-wave detailIcon',
                     }).appendTo(revenue);
                 }
 
                 if (data.runtime !== '0' && data.runtime !== 0) {
-
                     let hoursRuntime;
 
                     if (lang == 'he') {
@@ -2537,13 +2276,11 @@ const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
                         text: finalRuntimeText,
                     }).appendTo(objectDetails);
 
-                    let clockIcon = $('<i>', {
+                    $('<i>', {
                         class: 'fas fa-clock detailIcon',
                     }).appendTo(runtime);
                 }
-
             } else {
-
                 let finalSeasonsText;
                 let finalEpisodesText;
 
@@ -2560,7 +2297,7 @@ const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
                     text: finalSeasonsText,
                 }).appendTo(objectDetails);
 
-                let tvIcon = $('<i>', {
+                $('<i>', {
                     class: 'fas fa-tv detailIcon',
                 }).appendTo(seasonsNum);
 
@@ -2569,13 +2306,12 @@ const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
                     text: finalEpisodesText,
                 }).appendTo(objectDetails);
 
-                let episodeIcon = $('<i>', {
+                $('<i>', {
                     class: 'fas fa-clone detailIcon',
                 }).appendTo(episodesNum);
             }
 
             if (data.release_date !== '') {
-
                 let finalReleaseText;
 
                 if (lang == 'he') {
@@ -2589,13 +2325,12 @@ const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
                     text: finalReleaseText,
                 }).appendTo(objectDetails);
   
-                let calendarIcon = $('<i>', {
+                $('<i>', {
                     class: 'fas fa-calendar-alt detailIcon',
                 }).appendTo(releaseDate);
             }
 
-            let todayDate = new Date();
-					
+            let todayDate = new Date();	
             let finalDateForShow;
             
             if (kind == 1) {
@@ -2605,7 +2340,6 @@ const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
             }
 
             let finalVoteText;
-
             finalVoteText = data.vote_average.toString();
 
             if ((finalVoteText.length == 1 && data.vote_average !== '0') || data.vote_average == '10') {
@@ -2615,7 +2349,6 @@ const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
             }
 
             finalVoteText = finalVoteText.toString();
-
             finalVoteText = finalVoteText.replace('.', '') + '%';
 
             if (finalVoteText == '0%' && JSON.stringify(finalDateForShow > todayDate)) {
@@ -2623,7 +2356,6 @@ const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
             }
         
             if (finalVoteText !== 0 && finalVoteText !== undefined) {
-
                 let finalRatingText;
 
                 if (lang == 'he') {
@@ -2637,13 +2369,12 @@ const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
                     text: finalRatingText,
                 }).appendTo(objectDetails);
   
-                let ratingIcon = $('<i>', {
+                $('<i>', {
                     class: 'fas fa-star detailIcon',
                 }).appendTo(rating);
             }
 
             if (data.original_language !== 0 && data.original_language !== undefined) {
-
                 let finalLangText;
 
                 if (lang == 'he') {
@@ -2657,7 +2388,7 @@ const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
                     text: finalLangText,
                 }).appendTo(objectDetails);
   
-                let langIcon = $('<i>', {
+                $('<i>', {
                     class: 'fas fa-language detailIcon',
                 }).appendTo(language);
             }
@@ -2674,7 +2405,7 @@ const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
                 finalGenresText = 'Genres: ';
             }
 
-            let objectGenreHead = $('<span>', {
+            $('<span>', {
                 class: 'objectGenreHead',
                 text: finalGenresText,
             }).appendTo(objectGenreWrapper);
@@ -2689,7 +2420,7 @@ const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
                 text: arr,
             }).appendTo(objectGenreWrapper);
 
-            let genreIcon = $('<i>', {
+            $('<i>', {
                 class: 'fas fa-window-restore detailIcon',
             }).appendTo(objectGenre);
         },
@@ -2700,9 +2431,7 @@ const getObjectInfo = (objectId, movieTitle, originalTitle, kind) => {
 }
 
 const getCredits = (objectId, kind) => {
-
     directorCounter = 0;
-
     let tmdbUrl;
 
     if (kind == 1) {
@@ -2717,10 +2446,8 @@ const getCredits = (objectId, kind) => {
         url: tmdbUrl + objectId + "/credits?api_key=" + tmdbKey + "&language=" + lang,
         dataType: "json",
         success: (data) => {
-
             if (data.crew.length > 0 && kind == 1) {
-
-                let directorHeader = $('<h2>', {
+                $('<h2>', {
                     class: 'directorHeader',
                 }).appendTo($('#directorWrapper'));
 
@@ -2741,7 +2468,6 @@ const getCredits = (objectId, kind) => {
                             let actorImgPath;
         
                             if (data.crew[i].profile_path == 'undefined' || data.crew[i].profile_path == null || data.crew[i].profile_path == '') {
-        
                                 switch (data.crew[i].gender) {
                                     case 0:
                                         actorImgPath = './images/actor.png';
@@ -2765,7 +2491,7 @@ const getCredits = (objectId, kind) => {
                                 class: 'imageLink',
                             }).appendTo(directorName);
         
-                            let actorImg = $('<img>', {
+                            $('<img>', {
                                 class: 'actorImg',
                                 src: actorImgPath,
                                 alt: 'actorImg',
@@ -2789,7 +2515,7 @@ const getCredits = (objectId, kind) => {
                                 class: 'imdbLinkWrapper',
                             }).appendTo(linksWrapper);
         
-                            let imdbLink = $('<img>', {
+                            $('<img>', {
                                 src: './images/imdb.png',
                                 alt: 'imdbImg',
                                 class: 'imdbLink',
@@ -2803,7 +2529,7 @@ const getCredits = (objectId, kind) => {
                                 class: 'instagramWrapper',
                             }).appendTo(linksWrapper);
         
-                            let instagramLink = $('<img>', {
+                            $('<img>', {
                                 src: './images/instagram.png',
                                 alt: 'instagramImg',
                                 class: 'instagramLink',
@@ -2834,12 +2560,10 @@ const getCredits = (objectId, kind) => {
                             $('.directorHeader').html('Director');
                         }
                     }
-
                 }, 1000)
             }
 
             if (data.cast.length > 0) {
-   
                 let finalCastText;
 
                 if (lang == 'he') {
@@ -2848,7 +2572,7 @@ const getCredits = (objectId, kind) => {
                     finalCastText = 'Cast';
                 }
 
-                let castHeader = $('<h2>', {
+                $('<h2>', {
                     class: 'castHeader',
                     text: finalCastText,
                 }).appendTo($('#castWrapper'));
@@ -2870,13 +2594,10 @@ const getCredits = (objectId, kind) => {
                 }
     
                 for (let i = 0; i < finalLength; i++) {
-
                     try {
-    
                         let actorImgPath;
     
                         if (data.cast[i].profile_path == 'undefined' || data.cast[i].profile_path == null || data.cast[i].profile_path == '') {
-    
                             switch (data.cast[i].gender) {
                                 case 0:
                                     actorImgPath = './images/actor.png';
@@ -2895,13 +2616,10 @@ const getCredits = (objectId, kind) => {
                         let trimmedString;
 
                         if (data.cast[i].character.length > 25) {
-    
                             if (countInstances(data.cast[i].character, '/') > 1) {
-                            
                                 let maxLength = 25;
                                 trimmedString = data.cast[i].character.substr(0, maxLength);
                                 trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")));
-    
                                 trimmedString = data.cast[i].character.split('/');
     
                                 if (trimmedString.length > 2) {
@@ -2909,11 +2627,9 @@ const getCredits = (objectId, kind) => {
                                 } else {
                                     trimmedString = trimmedString[0] + '/' + trimmedString[1];
                                 }
-        
                             } else {
                                 trimmedString = data.cast[i].character;
                             }
-    
                         } else {
                             trimmedString = data.cast[i].character;
                         }
@@ -2926,7 +2642,7 @@ const getCredits = (objectId, kind) => {
                             class: 'imageLink',
                         }).appendTo(castName);
     
-                        let actorImg = $('<img>', {
+                        $('<img>', {
                             class: 'actorImg',
                             src: actorImgPath,
                             alt: 'actorImg',
@@ -2942,7 +2658,7 @@ const getCredits = (objectId, kind) => {
                             $(actorName).addClass('hebTitle');
                         }  
     
-                        let characterName = $('<span>', {
+                        $('<span>', {
                             class: 'characterName',
                             text: trimmedString
                         }).appendTo(castName);
@@ -2955,7 +2671,7 @@ const getCredits = (objectId, kind) => {
                             class: 'imdbLinkWrapper',
                         }).appendTo(linksWrapper);
     
-                        let imdbLink = $('<img>', {
+                        $('<img>', {
                             src: './images/imdb.png',
                             alt: 'imdbImg',
                             class: 'imdbLink',
@@ -2969,7 +2685,7 @@ const getCredits = (objectId, kind) => {
                             class: 'instagramWrapper',
                         }).appendTo(linksWrapper);
     
-                        let instagramLink = $('<img>', {
+                        $('<img>', {
                             src: './images/instagram.png',
                             alt: 'instagramImg',
                             class: 'instagramLink',
@@ -2996,7 +2712,6 @@ const countInstances = (string, word) => {
 }
 
 const getImages = (objectId, kind) => {
-
     let tmdbUrl;
 
     if (kind == 1) {
@@ -3011,7 +2726,6 @@ const getImages = (objectId, kind) => {
         url: tmdbUrl + objectId + "/images?api_key=" + tmdbKey,
         dataType: "json",
         success: (data) => {
-
             let objectGallery = $('<div>', {
                 class: 'objectGallery',
             }).appendTo($('#galleryWrapper'));
@@ -3025,7 +2739,6 @@ const getImages = (objectId, kind) => {
             }
 
             for (let i = 0; i < finalLength; i++) {
-
                 try {
                     let galleryImg = data.backdrops[i].file_path;
                     let galleryImgPath;
@@ -3038,7 +2751,7 @@ const getImages = (objectId, kind) => {
                     }
     
                     if (i !== 0) {
-                        let movieGalleryImg = $('<img>', {
+                        $('<img>', {
                             class: 'movieGalleryImg lazy',
                             'data-src': galleryImgPath,
                             src: './images/stock.png',
@@ -3057,7 +2770,6 @@ const getImages = (objectId, kind) => {
 }
 
 const getVideos = (objectId, kind) => {
-
     let tmdbUrl;
 
     if (kind == 1) {
@@ -3072,7 +2784,6 @@ const getVideos = (objectId, kind) => {
         url: tmdbUrl + objectId + "/videos?api_key=" + tmdbKey + "&language=" + lang,
         dataType: "json",
         success: (data) => {
-
             let objectVideos = $('<div>', {
                 class: 'objectVideos',
             }).appendTo($('#videosWrapper'));
@@ -3083,14 +2794,13 @@ const getVideos = (objectId, kind) => {
                 }
 
                 let objectUrl = youtubeVideo + data.results[i].key + '?showinfo=0&enablejsapi=1';
-                let movieVideo = $('<iframe>', {
+                $('<iframe>', {
                     class: 'movieVideo',
                     id: 'movieVideo' + i,
                     src: objectUrl,
                     width: '420',
                     height: '315',
                     allowfullscreen: true,
-
                 }).appendTo(objectVideos);
             }
         },
@@ -3101,7 +2811,6 @@ const getVideos = (objectId, kind) => {
 }
 
 const getReviews = (objectId, kind) => {
-
     let tmdbUrl;
 
     if (kind == 1) {
@@ -3117,7 +2826,6 @@ const getReviews = (objectId, kind) => {
         dataType: "json",
         success: (data) => {
             if (data.results.length !== 0) {
-
                 let finalHedaer;
     
                 if (lang == 'he') {
@@ -3126,18 +2834,17 @@ const getReviews = (objectId, kind) => {
                     finalHedaer = 'Reviews';
                 }
     
-                let reviewsHeader = $('<h2>', {
+                $('<h2>', {
                     id: 'reviewsHeader',
                     text: finalHedaer
                 }).appendTo($('#reviewsWrapper'));
 
                 if (data.results.length !== 1) {
-
                     let reviewsBtns = $('<div>', {
                         id: 'reviewsBtns',
                     }).appendTo($('#reviewsWrapper'));
 
-                    let reviewsLeft = $('<img>', {
+                    $('<img>', {
                         id: 'reviewsLeft',
                         src: './images/leftArrow.png',
                         alt: 'arrow',
@@ -3148,7 +2855,7 @@ const getReviews = (objectId, kind) => {
                         }
                     }).appendTo(reviewsBtns);
         
-                    let reviewsRight = $('<img>', {
+                    $('<img>', {
                         id: 'reviewsRight',
                         src: './images/rightArrow.png',
                         alt: 'arrow',
@@ -3181,7 +2888,7 @@ const getReviews = (objectId, kind) => {
                         class: 'objectReview',
                     }).appendTo(reviewContainer);
     
-                    let reviewAuthor = $('<p>', {
+                    $('<p>', {
                         class: 'reviewAuthor',
                         text: data.results[i].author
                     }).appendTo(objectReview);
@@ -3192,7 +2899,6 @@ const getReviews = (objectId, kind) => {
                     }).appendTo(objectReview);
 
                     if (data.results[i].content.length > 250) {
-
                         let reviewArrowWrapper = $('<div>', {
                             class: 'reviewArrowWrapper',
                         }).appendTo(reviewContainer);
@@ -3205,18 +2911,15 @@ const getReviews = (objectId, kind) => {
                             finalArrowSrc = './images/arrow.png';
                         }
   
-                        let reviewArrow = $('<img>', {
+                        $('<img>', {
                             class: 'reviewArrow',
                             src: finalArrowSrc,
                             alt: 'arrow',
                             click: function() {
-
                                 $('.reviewArrowWrapper').removeClass('topArrowReview');
                                 $('.objectReview').css({'height': '8.5rem'});
                                 $('.reviewContent').css({'overflow': 'hidden'});
-
                                 document.querySelector('#reviewsWrapper').scrollIntoView({ behavior: 'smooth' });
-
                                 let object = $(this).parent().parent().find($('.objectReview'));
                                 let content = $(this).parent().parent().find($('.reviewContent'));
                                 let arrowWrapper = $(this).parent().parent().find($('.reviewArrowWrapper'));
@@ -3231,7 +2934,6 @@ const getReviews = (objectId, kind) => {
                                     }
 
                                     $(arrowWrapper).removeClass('topArrowReview');
-    
                                 } else {
                                     var el = $(object);
                                     var curHeight = el.height();
@@ -3265,9 +2967,7 @@ const getReviews = (objectId, kind) => {
 }
 
 const changeSlide = (type, currentSlide) => {
-
     if (type == 1) {
-
         if ($('.chosenSlide').attr('slideNum') == 1) {
             $('#reviewsLeft').hide();
             $('#reviewsBtns').css('justify-content', 'flex-end');
@@ -3281,9 +2981,7 @@ const changeSlide = (type, currentSlide) => {
 
         $('.chosenSlide').removeClass('chosenSlide');
         $('.review' + Number(Number(currentSlide) - 1)).addClass('chosenSlide');
-
     } else {
-
         let beforeFinalSlide = Number(Number($('.finalReview').attr('slideNum')) - 1);
 
         if ($('.chosenSlide').attr('slideNum') == beforeFinalSlide) {
@@ -3316,7 +3014,6 @@ const getTvShowImdbId = (tvShowId) => {
 }
 
 const characterClick = (movieId, movieName) => {
-
     let finalName;
 
     if (lang == 'he') {
@@ -3344,8 +3041,7 @@ const characterClick = (movieId, movieName) => {
     objectClicked(movieId, finalName, movieName, 1);
 }
 
-async function objectClicked(id, name, originalName, type) {
-    
+async function objectClicked(id, name, originalName, type) {  
     window.onscroll = () => {
         scrollIndicator();
         scrollBtn();
@@ -3353,7 +3049,6 @@ async function objectClicked(id, name, originalName, type) {
     };
 
     $('#chosenMovie').attr('chosenId', '');
-
     $('#socialLinksWrapper').remove();
 
     if (page == 4) {
@@ -3393,10 +3088,8 @@ async function objectClicked(id, name, originalName, type) {
             clearInterval(id2);
             $('#container').fadeIn('slow');
             $('#chosenMovie').fadeIn('slow');
-
             didPopularLoaded = false;
             didImagesLoaded = false;
-
             $('.bottomSection').show();
             width = 1;
         }
@@ -3406,7 +3099,6 @@ async function objectClicked(id, name, originalName, type) {
     $('.actorImg').off();
     
     if (type == 3) {
-
         let promise = new Promise((resolve, reject) => {
             resolve(getPersonInfo(id, name));
         });
@@ -3428,10 +3120,9 @@ async function objectClicked(id, name, originalName, type) {
         });
 
         await Promise.all([promise, promise2, promise3, promise4, promise5]);
-        
     } else {
         let promise = new Promise((resolve, reject) => {
-            resolve(getObjectInfo(id, name, originalName, type));
+            resolve(getObjectInfo(id, originalName, type));
         });
         
         let promise2 = new Promise((resolve, reject) => {
@@ -3454,11 +3145,10 @@ async function objectClicked(id, name, originalName, type) {
         }
     
         setTimeout(() => {
-
             if (userLoggedIn && type == 1 || userLoggedIn && type == 2) {    
                 $('#chosenMovie').find($('.addToFavoritesBtn')).remove();
                 
-                let addToFavoritesBtn = $('<img>', {
+                $('<img>', {
                     class: 'addToFavoritesBtn chosenMovieSection',
                     src: './images/emptyStar.png',
                     alt: 'star',
@@ -3513,26 +3203,20 @@ async function objectClicked(id, name, originalName, type) {
                     })
                 }
             }, 400);
-
         }, 3500);
     }
 }
 
 const scrollOnChosenObject = (id, type) => {
-
     let length = $(document).height() - Number($(window).height() + 500);
 
     if ($(window).scrollTop() > length && $('.movieGalleryImg').length == 0 && !$('.movieGalleryImg').is(':visible') && page == 1 && !didImagesLoaded) {
-
         didImagesLoaded = true;
-
         $('#contentWrapper').css({'pointer-events': 'none', 'opacity': '.5'});
         $('#spinner').fadeIn('fast');
-
         getImages(id, type);
         getVideos(id, type);
         getReviews($('#chosenMovie').attr('chosenId'), type);
-
         document.querySelector('#captainmarvel').scrollIntoView({ behavior: 'smooth' });
 
         setTimeout(() => {
@@ -3543,7 +3227,6 @@ const scrollOnChosenObject = (id, type) => {
 }
 
 const goToActorImdb = (imdbActorId, that, linkNum) => {
-
     $.ajax({
         type: 'GET',
         crossDomain: true,
@@ -3551,7 +3234,6 @@ const goToActorImdb = (imdbActorId, that, linkNum) => {
         dataType: "json",
         success: (data) => {
             if (linkNum == 1) {
-
                 if (data.imdb_id == null) {
                     $('#noImdbPop').show();
                     removePopup($('#noImdbPop'));
@@ -3563,7 +3245,6 @@ const goToActorImdb = (imdbActorId, that, linkNum) => {
                     actorImdbLink.trigger("click");
                     actorImdbLink.off();
                 }
-
             } else {
                 if (data.instagram_id == null) {
                     $('#noInstagramPop').show();
@@ -3585,7 +3266,6 @@ const goToActorImdb = (imdbActorId, that, linkNum) => {
 }
 
 const getSimilar = (objectId, kind) => {
-
     let tmdbUrl;
     let similarHeader;
     let title;
@@ -3598,7 +3278,6 @@ const getSimilar = (objectId, kind) => {
         } else {
             similarHeader = 'Similar Movies';
         }
-
     } else {
         tmdbUrl = tvShowInfoUrl;
 
@@ -3615,8 +3294,7 @@ const getSimilar = (objectId, kind) => {
         url: tmdbUrl + objectId + "/similar?api_key=" + tmdbKey + "&language=" + lang,
         dataType: "json",
         success: (data) => {
-
-            let similarMoviesHeader = $('<h2>', {
+            $('<h2>', {
                 text: similarHeader,
                 class: 'similarMoviesHeader'
             }).appendTo($('#similarWrapper'));
@@ -3625,7 +3303,7 @@ const getSimilar = (objectId, kind) => {
                 class: 'similarMoviesWrapper',
             }).appendTo($('#similarWrapper'));
 
-            let similarMovies = $('<div>', {
+            $('<div>', {
                 class: 'similarMovies'
             }).appendTo(similarMoviesWrapper);
 
@@ -3635,7 +3313,6 @@ const getSimilar = (objectId, kind) => {
             }
 
             for (let i = 0; i < data.results.length; i++) {
-
                 if (i == data.results.length - 1) {
                     setTimeout(() => {
                         sortPopularMovies($('.similarMovies'), 'popularity', 2);
@@ -3661,10 +3338,6 @@ const getSimilar = (objectId, kind) => {
                     if (data.results[i].poster_path == 'undefined' || data.results[i].poster_path == null || data.results[i].poster_path == '') {
                         img = './images/stock.png';
                     }
-
-					let todayDate = new Date();
-					
-					let finalDateForShow;
                     
                     if (kind == 1) {
                         finalDateForShow = data.results[i].release_date;
@@ -3684,7 +3357,7 @@ const getSimilar = (objectId, kind) => {
                         class: 'imageLink',
                     }).appendTo(similarMovie);
 
-                    let similarMovieImg = $('<img>', {
+                    $('<img>', {
                         class: 'similarMovieImg',
                         src: img,
                         alt: 'similarMovieImg',
@@ -3755,7 +3428,6 @@ const getActorMovieInfo = (objectId, that, kind) => {
                     similarMovieImg.trigger("click");
                     similarMovieImg.off();
                 }
-
             } else {
                 that.attr('href', 'https://www.imdb.com/title/' + data.imdb_id);
                 that.attr('target', '_blank');
